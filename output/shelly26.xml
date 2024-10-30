@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<log>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in XBRL rule processor (xule) successful, version Check version using Tools->Xule->Version on the GUI or --xule-version on the command line. - xule </message>
+ <ref href="xule"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in SEC Inline Transforms successful, version 19.2. - transforms/SEC </message>
+ <ref href="transforms/SEC"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in Validate EFM successful, version 1.23.4. - validate/EFM </message>
+ <ref href="validate/EFM"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in Inline XBRL Document Set successful, version 1.1. - inlineXbrlDocumentSet </message>
+ <ref href="inlineXbrlDocumentSet"/></entry>
+<entry code="info" level="info">
+ <message>[info] Xule version: 3.0.30041 - </message>
+ <ref href=""/></entry>
+<entry code="info" level="info">
+ <message>[info] loaded in 0.62 secs at 2024-10-30T15:21:54 - /Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS </message>
+ <ref href="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS#?#/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/ben-20221231.htm"/></entry>
+<entry code="Contra_Asset_property_with_no_instant_contra" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Contra_Asset_property_with_no_instant_contra] set(us-gaap:TaxCreditCarryforwardValuationAllowance, us-gaap:UnamortizedDiscountsOnAcceptancesExecuted, us-gaap:ValuationAllowancesAndReservesBalance, us-gaap:AirlineRelatedInventoryValuationReserves, us-gaap:PropertyPlantAndEquipmentOtherAccumulatedDepreciation, us-gaap:SecuritiesPurchasedUnderAgreementsToResellAllowanceForCreditLoss, us-gaap:SecuritiesBorrowedAllowanceForCreditLoss, us-gaap:TimeSharingTransactionsAllowanceForUncollectibleAccounts, us-gaap:RealEstateVariableInterestEntityBorrowings, us-gaap:CapitalizedCostsAccumulatedDepreciationDepletionAmortizationAndValuationAllowanceForRelatingToOilAndGasProducingActivities, us-gaap:OperatingLossCarryforwardsValuationAllowance, us-gaap:RealEstateSubsidiaryLiabilities, us-gaap:RealEstateOwnedAccumulatedDepreciation, us-gaap:RealEstateOwnedValuationAllowanceComponent, us-gaap:RealEstateOwnedValuationAllowance) - </message></entry>
+<entry code="Contra_Asset_with_debit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Contra_Asset_with_debit_balance] set() - </message></entry>
+<entry code="Contra_Asset_with_no_property" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Contra_Asset_with_no_property] set(us-gaap:AllowanceForDoubtfulAccountsReceivable, us-gaap:AccumulatedAmortizationOfNoncurrentDeferredFinanceCosts, us-gaap:DeferredCostsLeasingAccumulatedAmortization, us-gaap:DeferredFinanceCostsOwnshareLendingArrangementIssuanceCostsAccumulatedAmortization, us-gaap:FinancingReceivableAllowanceForCreditLosses, us-gaap:GoodwillImpairedAccumulatedImpairmentLoss, us-gaap:AllowanceForDoubtfulOtherReceivablesCurrent, us-gaap:LoansAndLeasesReceivableAllowanceCovered, us-gaap:ReinsuranceRecoverablesOnPaidLossesAllowance, us-gaap:ReinsuranceRecoverablesOnUnpaidLossesAllowance, us-gaap:ReinsuranceRecoverablesAllowance, us-gaap:AccumulatedAmortizationOfDebtIssuanceCostsLineOfCreditArrangements, us-gaap:PresentValueOfFutureInsuranceProfitsAccumulatedAmortization, us-gaap:ContractWithCustomerAssetAccumulatedAllowanceForCreditLoss, us-gaap:ContractWithCustomerAssetAccumulatedAllowanceForCreditLossCurrent, us-gaap:ContractWithCustomerAssetAccumulatedAllowanceForCreditLossNoncurrent, us-gaap:HostingArrangementServiceContractImplementationCostCapitalizedAccumulatedAmortization, us-gaap:DebtSecuritiesHeldToMaturityAllowanceForCreditLoss, us-gaap:DebtSecuritiesHeldToMaturityAllowanceForCreditLossCurrent, us-gaap:DebtSecuritiesHeldToMaturityAllowanceForCreditLossNoncurrent, us-gaap:NetInvestmentInLeaseAllowanceForCreditLoss, us-gaap:SalesTypeLeaseNetInvestmentInLeaseAllowanceForCreditLoss, us-gaap:SalesTypeLeaseNetInvestmentInLeaseAllowanceForCreditLossCurrent, us-gaap:SalesTypeLeaseNetInvestmentInLeaseAllowanceForCreditLossNoncurrent, us-gaap:DebtSecuritiesAvailableForSaleAllowanceForCreditLossCurrent, us-gaap:DebtSecuritiesAvailableForSaleAllowanceForCreditLossNoncurrent, us-gaap:DebtSecuritiesAvailableForSaleAllowanceForCreditLoss, us-gaap:ContractWithCustomerReceivableAllowanceForCreditLoss, us-gaap:ContractWithCustomerReceivableAllowanceForCreditLossCurrent, us-gaap:ContractWithCustomerReceivableAllowanceForCreditLossNoncurrent, us-gaap:FinanceLeaseRightOfUseAssetAccumulatedAmortization, us-gaap:FinancingReceivableAllowanceForCreditLossExcludingAccruedInterest, us-gaap:FinancingReceivableAllowanceForCreditLossExcludingAccruedInterestCurrent, us-gaap:FinancingReceivableAllowanceForCreditLossExcludingAccruedInterestNoncurrent, us-gaap:DebtSecuritiesHeldToMaturityAllowanceForCreditLossExcludingAccruedInterest, us-gaap:DebtSecuritiesHeldToMaturityAllowanceForCreditLossExcludingAccruedInterestCurrent, us-gaap:DebtSecuritiesHeldToMaturityAllowanceForCreditLossExcludingAccruedInterestNoncurrent, us-gaap:NetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterest, us-gaap:NetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestCurrent, us-gaap:NetInvestmentInLeaseAllowanceForCreditLossExcludingAccruedInterestNoncurrent, us-gaap:DebtSecuritiesAvailableForSaleAmortizedCostAllowanceForCreditLossExcludingAccruedInterest, us-gaap:DebtSecuritiesAvailableForSaleAmortizedCostAllowanceForCreditLossExcludingAccruedInterestCurrent, us-gaap:DebtSecuritiesAvailableForSaleAmortizedCostAllowanceForCreditLossExcludingAccruedInterestNoncurrent, us-gaap:AccountsReceivableAllowanceForCreditLossExcludingAccruedInterestNoncurrent, us-gaap:OtherReceivableAllowanceForCreditLossNoncurrent, us-gaap:FiniteLivedIntangibleAssetsAccumulatedAmortization, us-gaap:RecordedThirdPartyEnvironmentalRecoveriesDiscount, us-gaap:DeferredTaxAssetsValuationAllowance, us-gaap:LoansAndLeasesReceivableDeferredIncome, us-gaap:LoansAndLeasesReceivableAllowance, us-gaap:AllowanceForLoanAndLeaseLossesRealEstate, us-gaap:AllowanceForDoubtfulAccountsPremiumsAndOtherReceivables, us-gaap:PremiumsReceivableAllowanceForDoubtfulAccounts, us-gaap:ProgressPaymentsNettedAgainstInventoryForLongTermContractsOrPrograms) - </message></entry>
+<entry code="Contra_Liability_with_credit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Contra_Liability_with_credit_balance] set() - </message></entry>
+<entry code="Distributions_to_owner_with_credit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Distributions_to_owner_with_credit_balance] set() - </message></entry>
+<entry code="Equity_with_debit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Equity_with_debit_balance] set() - </message></entry>
+<entry code="Expenses_with_credit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Expenses_with_credit_balance] set(us-gaap:AccountsReceivableNoncurrentNonaccrualInterestIncome, us-gaap:GovernmentAssistanceExpense, us-gaap:AssumedPremiumsWritten) - </message></entry>
+<entry code="Gains_with_debit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Gains_with_debit_balance] set() - </message></entry>
+<entry code="Investment_by_owner_with_debit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Investment_by_owner_with_debit_balance] set() - </message></entry>
+<entry code="Loss_with_credit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Loss_with_credit_balance] set() - </message></entry>
+<entry code="Revenues_with_debit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[Revenues_with_debit_balance] set(us-gaap:InvestmentIncomeOperatingTaxExpenseBenefit) - </message></entry>
+<entry code="asset_with_credit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[asset_with_credit_balance] set() - </message></entry>
+<entry code="inappropriate_contra" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[inappropriate_contra] set(list(us-gaap:DeferredCostsCreditCardOriginationCostsAmount, us-gaap:DeferredCostsCreditCardOriginationCostsAmortization)) - </message></entry>
+<entry code="instant_accrual_with_matching_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[instant_accrual_with_matching_balance] set(list(us-gaap:OperatingLeaseRightOfUseAsset, us-gaap:OperatingLeaseRightOfUseAssetAmortizationExpense), list(us-gaap:DeferredStormAndPropertyReserveDeficiencyNoncurrent, us-gaap:StormDamageProvision), list(us-gaap:ServicingAssetAtAmortizedValue, us-gaap:AmortizationOfMortgageServicingRightsMSRs), list(us-gaap:ServicingAssetAtAmortizedValue, us-gaap:ServicingAssetAtAmortizedValueAmortization1), list(us-gaap:DeferredPolicyAcquisitionCosts, us-gaap:DeferredPolicyAcquisitionCostAmortizationExpense), list(us-gaap:DeferredSalesInducementsNet, us-gaap:DeferredSalesInducementsAmortizationExpense), list(us-gaap:DebtInstrumentUnamortizedDiscountPremiumNet, us-gaap:AmortizationOfDebtDiscountPremium), list(us-gaap:AdvanceRoyalties, us-gaap:AmortizationOfAdvanceRoyalty), list(us-gaap:AcquisitionCosts, us-gaap:AmortizationOfAcquisitionCosts), list(us-gaap:AccrualForEnvironmentalLossContingencies, us-gaap:AccrualForEnvironmentalLossContingenciesForeignCurrencyTranslationGainLoss), list(us-gaap:ExtendedProductWarrantyAccrual, us-gaap:ExtendedProductWarrantyAccrualForeignCurrencyTranslationGainLoss)) - </message></entry>
+<entry code="liability_with_debit_balance" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[liability_with_debit_balance] set(us-gaap:SecuritiesPurchasedUnderAgreementsToResellAmountOffsetAgainstCollateral, us-gaap:GovernmentAssistanceAmountCumulativeCurrent) - </message></entry>
+<entry code="loss_items_not_in_RE" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[loss_items_not_in_RE] set(us-gaap:TangibleAssetImpairmentCharges, us-gaap:LossOnContractTermination, us-gaap:LossOnContractTerminationForDefault, us-gaap:GoodwillImpairmentLossNetOfTax, us-gaap:AvailableForSaleDebtSecuritiesGrossUnrealizedLoss, us-gaap:CapitalizedContractCostImpairmentLoss, us-gaap:DebtSecuritiesTradingUnrealizedLoss, us-gaap:DebtSecuritiesTradingRealizedLoss, us-gaap:DebtSecuritiesAvailableForSaleRealizedLoss, us-gaap:DebtSecuritiesAvailableForSaleTransferToTradingLoss, us-gaap:EquitySecuritiesWithoutReadilyDeterminableFairValueImpairmentLossAnnualAmount, us-gaap:EquitySecuritiesFvNiRealizedLoss, us-gaap:EquitySecuritiesFvNiUnrealizedLoss, us-gaap:EquitySecuritiesWithoutReadilyDeterminableFairValueDownwardPriceAdjustmentAnnualAmount, us-gaap:FilmMonetizedOnItsOwnAndFilmGroupImpairment, us-gaap:LitigationSettlementLoss, us-gaap:LossOnDerivativeInstrumentsPretax, us-gaap:DebtorReorganizationItemsImpairmentLoss, us-gaap:DerivativeLossOnDerivative, us-gaap:EmbeddedDerivativeLossOnEmbeddedDerivative, us-gaap:ImpairedAssetsToBeDisposedOfByMethodOtherThanSaleAmountOfImpairmentLoss, us-gaap:ImpairmentChargeOnReclassifiedAssets, us-gaap:LossFromComponentsExcludedFromAssessmentOfCashFlowHedgeEffectiveness, us-gaap:LossFromComponentsExcludedFromAssessmentOfFairValueHedgeEffectiveness, us-gaap:LossFromHedgedFirmCommitmentNotQualifyingAsFairValueHedge, us-gaap:LossOnCashFlowHedgeIneffectiveness, us-gaap:LossOnDiscontinuationOfCashFlowHedgeDueToForecastedTransactionProbableOfNotOccurring, us-gaap:LossOnFairValueHedgeIneffectiveness, us-gaap:UnrealizedLossOnForeignCurrencyDerivativesBeforeTax, us-gaap:UnrealizedLossOnPriceRiskCashFlowDerivativesBeforeTax, us-gaap:LossRecognizedOnAssetsTransferredToSeparateAccountGross, us-gaap:ProductionRelatedImpairmentsOrCharges, us-gaap:ResultsOfOperationsImpairmentOfOilAndGasProperties) - </message></entry>
+<entry code="multi-trait" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[multi-trait] list(us-gaap:CashPassThroughReserveFederalHomeLoanBank, set(us-gaap:AssetsMember, us-gaap-metaModel:CurrentMember, us-gaap-metaModel:OperatingActivity, us-gaap-metaModel:ReportedAtFairValue)) - </message></entry>
+<entry code="multi-trait" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[multi-trait] list(us-gaap:Cash, set(us-gaap:AssetsMember, us-gaap-metaModel:CurrentMember, us-gaap-metaModel:OperatingActivity, us-gaap-metaModel:ReportedAtFairValue)) - </message></entry>
+<entry code="multi-trait" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[multi-trait] list(us-gaap:CashFDICInsuredAmount, set(us-gaap:AssetsMember, us-gaap-metaModel:CurrentMember, us-gaap-metaModel:OperatingActivity, us-gaap-metaModel:ReportedAtFairValue)) - </message></entry>
+<entry code="multi-trait" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[multi-trait] list(us-gaap:CashUninsuredAmount, set(us-gaap:AssetsMember, us-gaap-metaModel:CurrentMember, us-gaap-metaModel:OperatingActivity, us-gaap-metaModel:ReportedAtFairValue)) - </message></entry>
+<entry code="multi-trait" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[multi-trait] list(us-gaap:CashSegregatedUnderCommodityExchangeActRegulation, set(us-gaap:AssetsMember, us-gaap-metaModel:CurrentMember, us-gaap-metaModel:OperatingActivity, us-gaap-metaModel:ReportedAtFairValue)) - </message></entry>
+<entry code="multi-trait-2" level="info">
+ <message filing_url="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS" severity="info" cid="4374611344" edgarMessageNumericId="60000000">[multi-trait-2] set(us-gaap:ForeignExchangeContractMember, us-gaap:FairValueHedgingMember, us-gaap-metaModel:ReportedAtFairValue) - </message></entry>
+<entry code="info" level="info">
+ <message>[info] validated in 3.98 secs - /Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS </message>
+ <ref href="/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/_IXDS#?#/Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip/ben-20221231.htm"/></entry>
+</log>
+<?xml version="1.0" encoding="utf-8"?>
+<log>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in XBRL rule processor (xule) successful, version Check version using Tools->Xule->Version on the GUI or --xule-version on the command line. - xule </message>
+ <ref href="xule"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in SEC Inline Transforms successful, version 19.2. - transforms/SEC </message>
+ <ref href="transforms/SEC"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in Validate EFM successful, version 1.23.4. - validate/EFM </message>
+ <ref href="validate/EFM"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in Inline XBRL Document Set successful, version 1.1. - inlineXbrlDocumentSet </message>
+ <ref href="inlineXbrlDocumentSet"/></entry>
+<entry code="info" level="info">
+ <message>[info] Xule version: 3.0.30041 - </message>
+ <ref href=""/></entry>
+</log>
+<?xml version="1.0" encoding="utf-8"?>
+<log>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in XBRL rule processor (xule) successful, version Check version using Tools->Xule->Version on the GUI or --xule-version on the command line. - xule </message>
+ <ref href="xule"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in SEC Inline Transforms successful, version 19.2. - transforms/SEC </message>
+ <ref href="transforms/SEC"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in Validate EFM successful, version 1.23.4. - validate/EFM </message>
+ <ref href="validate/EFM"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in Inline XBRL Document Set successful, version 1.1. - inlineXbrlDocumentSet </message>
+ <ref href="inlineXbrlDocumentSet"/></entry>
+<entry code="info" level="info">
+ <message>[info] Xule version: 3.0.30041 - </message>
+ <ref href=""/></entry>
+</log>
+<?xml version="1.0" encoding="utf-8"?>
+<log>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in XBRL rule processor (xule) successful, version Check version using Tools->Xule->Version on the GUI or --xule-version on the command line. - xule </message>
+ <ref href="xule"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in SEC Inline Transforms successful, version 19.2. - transforms/SEC </message>
+ <ref href="transforms/SEC"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in Validate EFM successful, version 1.23.4. - validate/EFM </message>
+ <ref href="validate/EFM"/></entry>
+<entry code="info" level="info">
+ <message>[info] Activation of plug-in Inline XBRL Document Set successful, version 1.1. - inlineXbrlDocumentSet </message>
+ <ref href="inlineXbrlDocumentSet"/></entry>
+<entry code="info" level="info">
+ <message>[info] Xule version: 3.0.30041 - </message>
+ <ref href=""/></entry>
+</log>
