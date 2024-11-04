@@ -7,123 +7,368 @@ Taxonomy: US GAAP ALL
 
 **/
 
+output-attribute file-location
+output-attribute file-content
+output-attribute file-append
+
+/** CONSTANTS **/ 
 
 constant $META-2025 = taxonomy('https://xbrl.fasb.org/meta/dev/us-gaap-metaModel-entire-2025.xsd')
 
 constant $RETAINED_EARNINGS_OUT = navigate 'http://www.xbrl.org/2021/arcrole/instant-outflow' children from RetainedEarningsAccumulatedDeficit taxonomy $META-2025 returns set(target)
 
+constant $RETAINED_EARNINGS_IN = navigate 'http://www.xbrl.org/2021/arcrole/instant-inflow' children from RetainedEarningsAccumulatedDeficit taxonomy $META-2025 returns set(target)
+
+constant $CF_OUT = navigate 'http://www.xbrl.org/2021/arcrole/instant-outflow' children from Cash taxonomy $META-2025 returns set(target)
+
+constant $CF_IN = navigate 'http://www.xbrl.org/2021/arcrole/instant-inflow' children from Cash taxonomy $META-2025 returns set(target)
+
 constant $CONTRA_ASSETS =  navigate 'http://www.xbrl.org/2021/arcrole/instant-contra' children taxonomy $META-2025 where $relationship.target.balance == credit returns set(target)
 
 constant $CONTRA_LIABILITIES =  navigate 'http://www.xbrl.org/2021/arcrole/instant-contra' children taxonomy $META-2025 where $relationship.target.balance == debit returns set(target)
 
-constant $OTHER_ITEMS =  navigate 'http://www.xbrl.org/2021/arcrole/aggregate-other' children taxonomy $META-2025 returns set(target)
+constant $OTHER_ITEMS =  navigate 'http://www.xbrl.org/2021/arcrole/aggregate-other' children taxonomy $META-2025 returns list (source, target)
+
+constant $TRAIT_DOMAIN =  navigate 'http://www.xbrl.org/2021/arcrole/trait-domain' children taxonomy $META-2025 returns target
+
+constant $TRAIT_VALUES = list(for $domain in $TRAIT_DOMAIN
+                            $traits = navigate domain-member descendants from $domain taxonomy $META-2025 returns target
+                            list($domain, $traits))
+
+constant $INCOME_STATEMENT_ITEMS = navigate parent-child descendants from list(IncomeStatementAbstract, SupplementalIncomeStatementElementsAbstract) taxonomy $US-GAAP where $relationship.target.is-abstract != true and $relationship.target.is-monetary == true returns set(target-name)
+
+/**ASSETS WITH NO BALANCE**/
 
 output loss_items_not_in_RE
 
 $loss-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:LossMember))
 
-/**filter $gain-prop where $item.balance == credit*/
+(dict(list(rule-name(),list(for $element in ($loss-prop - $RETAINED_EARNINGS_OUT).to-list.name
+                                list($element)))))
 
-$loss-prop - $RETAINED_EARNINGS_OUT
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**GAINS WITH NO RETAINED EARNINGS**/
+
+output gain_items_not_in_RE
+
+$gain-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:GainMember))
+
+(dict(list(rule-name(),list(for $element in ($gain-prop - $RETAINED_EARNINGS_IN).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**ASSETS WITH CREDIT BALANCE**/
 
 output asset_with_credit_balance
 
 $asset-prop = $META-2025.concepts-by-trait(list(AssetsMember))
 
-filter $asset-prop where $item.balance == credit
+$asset_with_credit_balance = filter $asset-prop where $item.balance == credit
 
-output liability_with_debit_balance
+(dict(list(rule-name(),list(for $element in ($asset_with_credit_balance).to-list.name
+                                list($element)))))
 
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**LIABILITIES WITH DEBIT BALANCE**/
+
+output liab_with_debit_balance
 
 $asset-prop = $META-2025.concepts-by-trait(list(LiabilityMember))
 
-filter $asset-prop where $item.balance == debit
+$liab_with_debit_balance = filter $asset-prop where $item.balance == debit
+
+(dict(list(rule-name(),list(for $element in ($liab_with_debit_balance).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**REVENUES WITH CREDIT BALANCE**/
 
 output Revenues_with_debit_balance
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:RevenueMember))
 
-filter $asset-prop where $item.balance == debit
+$rev_with_debit_balance = filter $asset-prop where $item.balance == debit
 
-output Expenses_with_credit_balance
+(dict(list(rule-name(),list(for $element in ($rev_with_debit_balance).to-list.name
+                                list($element)))))
 
-$asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ExpenseMember))
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
 
-filter $asset-prop where $item.balance == credit
+/**EXPENSES WITH CREDIT BALANCE**/
 
+output Expenses_with_CR_balance
 
-output Gains_with_debit_balance
+$exp-prop1 = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ExpenseMember))
+
+$exp-prop = filter $exp-prop1 where $item.balance == credit
+
+(dict(list(rule-name(),list(for $element in ($exp-prop ).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**EXPENSES WITH DEBIT BALANCE**/
+
+output Gains_with_dr_balance
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:GainMember))
 
-filter $asset-prop where $item.balance == debit
+$gains_with_dr = filter $asset-prop where $item.balance == debit
 
+(dict(list(rule-name(),list(for $element in ($gains_with_dr).to-list.name
+                                list($element)))))
 
-output Loss_with_credit_balance
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**LOSSES WITH CREDIT BALANCE**/
+
+output Loss_with_cr_balance
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:LossMember))
 
-filter $asset-prop where $item.balance == credit
+$loss_with_cr_bal = filter $asset-prop where $item.balance == credit
 
+(dict(list(rule-name(),list(for $element in ($loss_with_cr_bal).to-list.name
+                                list($element)))))
 
-output Distributions_to_owner_with_credit_balance
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**DISTRIBUTIONS TO OWNER WITH CREDIT BALANCE**/
+
+output Dist_to_owner_with_cr_bal
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:DistributionToOwnersMember))
 
-filter $asset-prop where $item.balance == credit
+$Dist_to_owner_with_cr_bal = filter $asset-prop where $item.balance == credit
 
-output Investment_by_owner_with_debit_balance
+(dict(list(rule-name(),list(for $element in ($Dist_to_owner_with_cr_bal).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**INVESTMENT BY OWNER WITH DEBIT BALANCE**/
+
+output Invest_by_own_with_dr_bal
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:InvestmentByOwnersMember))
 
-filter $asset-prop where $item.balance == debit
+$Invest_by_own_with_dr_bal = filter $asset-prop where $item.balance == debit
 
-output Equity_with_debit_balance
+(dict(list(rule-name(),list(for $element in ($Invest_by_own_with_dr_bal).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**EQUITY WITH DEBIT BALANCE**/
+
+output Equity_with_dr_bal
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:EquityMemberMM))
 
-filter $asset-prop where $item.balance == debit
+$Equity_with_dr_bal = filter $asset-prop where $item.balance == debit
 
-output Contra_Asset_with_debit_balance
+(dict(list(rule-name(),list(for $element in ($Equity_with_dr_bal).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**CONTRA ASSET WITH DEBIT BALANCE**/
+
+output Contra_Asset_with_dr_bal
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraAssetMember))
 
-filter $asset-prop where $item.balance == debit
+$Contra_Asset_with_dr_bal = filter $asset-prop where $item.balance == debit
 
-output Contra_Liability_with_credit_balance
+(dict(list(rule-name(),list(for $element in ($Contra_Asset_with_dr_bal).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**CONTRA LIABILITY WITH CREDIT BALANCE**/
+
+output Contra_Liab_with_cr_bal
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraLiabilityMember))
 
-filter $asset-prop where $item.balance == credit
+$Contra_Liab_with_cr_bal = filter $asset-prop where $item.balance == credit
+
+(dict(list(rule-name(),list(for $element in ($Contra_Liab_with_cr_bal).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**CONTRA ASSET WITH NO PROPERTY**/
 
 output Contra_Asset_with_no_property
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraAssetMember))
 
-$CONTRA_ASSETS - $asset-prop
+(dict(list(rule-name(),list(for $element in ($CONTRA_ASSETS - $asset-prop).to-list.name
+                                list($element)))))
 
-output Contra_Asset_property_with_no_instant_contra
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**CONTRA ASSET WITH NO INSTANT CONTRA**/
+
+output Contra_Asset_no_instant_contra
 
 $asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraAssetMember))
 
-$asset-prop - $CONTRA_ASSETS
+(dict(list(rule-name(),list(for $element in ($asset-prop - $CONTRA_ASSETS).to-list.name
+                                list($element)))))
 
-output inappropriate_contra
-
-navigate 'http://www.xbrl.org/2021/arcrole/instant-contra' children taxonomy $META-2025 where $relationship.target.balance == $relationship.source.balance returns set(source, target)
-
-output instant_accrual_with_matching_balance
-
-navigate 'http://www.xbrl.org/2021/arcrole/instant-accrual' children taxonomy $META-2025 where $relationship.target.balance == $relationship.source.balance returns set(source, target)
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
 
 
-output multi-trait
+/**CONTRA LIABILITY WITH NO INSTANT CONTRA**/
 
- $concepts = $META-2025.concepts-by-trait(list(us-gaap:AssetsMember, us-gaap-metaModel:CurrentMember, us-gaap-metaModel:OperatingActivity, us-gaap-metaModel:ReportedAtFairValue))
+output Contra_Liab_with_no_prop
 
- for $concept in $concepts
-   list($concept,$concept.traits)
+$liability-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraLiabilityMember))
 
+(dict(list(rule-name(),list(for $element in ($CONTRA_LIABILITIES - $liability-prop).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**CONTRA LIABILITY WITH NO PROPERTY**/
+output Contra_Liab_no_instant_contra
+
+$liability-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraLiabilityMember))
+
+(dict(list(rule-name(),list(for $element in ($liability-prop - $CONTRA_LIABILITIES).to-list.name
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/** CONTRA WITH MATCHING BALANCE **/
+
+output contra_with_matching_balance
+
+$items = navigate 'http://www.xbrl.org/2021/arcrole/instant-contra' children taxonomy $META-2025 where $relationship.target.balance == $relationship.source.balance returns list (source-name, target-name)
+
+$items_with_header = list(list('Source', 'Target')) + $items
+ 
+dict(list(rule-name(),list(for $element in $items_with_header 
+                                list($element[1], $element[2]))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/**INSTANT ACCRUAL WITH MATCHING BALANCE**/
+
+output Inst_accrual_with_match_balance
+
+$items = navigate 'http://www.xbrl.org/2021/arcrole/instant-accrual' children taxonomy $META-2025 where $relationship.target.balance == $relationship.source.balance returns list (source-name, target-name)
+
+$items_with_header = list(list('Source', 'Target')) + $items
+ 
+dict(list(rule-name(),list(for $element in $items_with_header 
+                                list($element[1], $element[2]))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
 
 output multi-trait-2
 $META-2025.concept(ForeignCurrencyFairValueHedgeAssetAtFairValue).traits
+
+/**Other with no calculation parent **/
+output Agg_other_diff_calc_parent
+
+dict(list(rule-name(),list(list('Other Item','Calculation Parent', 'Agg of Other')) +  list(for $otherItem in $OTHER_ITEMS
+       $parent = navigate summation-item parents from $otherItem[2].name taxonomy $US-GAAP returns list (source-name, target-name)
+       if $parent.length == 0
+        list($otherItem[2].name, none, $otherItem[1].name)
+       else
+       if $parent[1][2] != $otherItem[1].name
+        list($otherItem[2].name, $parent[1][2], $otherItem[1].name)
+       else
+        skip)
+))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/** Conflicting Traits **/
+output Conflicting_traits
+
+dict(list(rule-name(),list(list('Domain','Elements with Conflicting Traits', 'The Traits')) + list(for $traits in $TRAIT_VALUES
+    $num_traits = $traits[2].length
+    if $num_traits > 1
+        for $startloop in (range($num_traits - 1)).sort('asc')
+             for $endloop in (range($num_traits - 1)).sort('desc')
+              if $startloop > $endloop
+                 skip
+              else
+                $traitList = list($traits[2][$startloop],$traits[2][$endloop + 1])
+                if $META-2025.concepts-by-trait($traitList) == set()
+                  skip
+                else
+                  list($traits[1].name,($META-2025.concepts-by-trait($traitList)).name.join(','), $traitList.join(','))
+    else
+      skip
+)))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+/** CASH FLOW NOT IN OPERTING, FINANCING OR INVESTINGr **/
+
+output CF_Item_no_activity
+$CF_items = $CF_OUT + $CF_IN
+
+$operating = $META-2025.concepts-by-trait(list(us-gaap-metaModel:OperatingActivity));
+$financing = $META-2025.concepts-by-trait(list(us-gaap-metaModel:FinancingActivity));
+$investing = $META-2025.concepts-by-trait(us-gaap-metaModel:InvestingActivity);
+$CF_Activity = $investing + $financing + $operating
+
+(dict(list(rule-name(),list(for $element in ($CF_items - $CF_Activity).to-list.name
+                                $ancestors = navigate summation-item ancestors include start from $element taxonomy $US-GAAP returns list (target-name)
+                                if $ancestors.contains(NetCashProvidedByUsedInOperatingActivities)
+                                    list($element, us-gaap-metaModel:OperatingActivity)
+                                else if $ancestors.contains(NetCashProvidedByUsedInFinancingActivities)
+                                    list($element, us-gaap-metaModel:FinancingActivity)
+                                else if $ancestors.contains(NetCashProvidedByUsedInInvestingActivities)
+                                    list($element, us-gaap-metaModel:InvestingActivity)
+                                else
+                                    list($element, none)
+                                    ))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+
+/** INCOME STATEMENT ITEM NOT FLOWING TO RETAINED EARNINGS **/
+
+output IS_item_no_RE
+
+$IS_item_no_RE = $INCOME_STATEMENT_ITEMS - ($RETAINED_EARNINGS_OUT.name + $RETAINED_EARNINGS_IN.name) 
+
+
+(dict(list(rule-name(),list(for $element in ($IS_item_no_RE).to-list
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
