@@ -32,3 +32,4 @@ namespace xbrldt = http://xbrl.org/2005/xbrldt
 namespace ecd = http://xbrl.sec.gov/ecd/2024
 namespace us-gaap-ebp = http://fasb.org/us-gaap-ebp/2024
 namespace us-gaap-metaModel = http://fasb.org/us-gaap-metaModel/2025
+namespace xs = http://www.w3.org/2001/XMLSchema

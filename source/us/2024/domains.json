@@ -1,0 +1,3002 @@
+{
+    "domains": [
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPMasterTrustEmployeeBenefitPlanMasterTrustTable",
+            "domainID": "EmployeeBenefitPlanNonconsolidatedMasterTrustAndPlanInterestInMasterTrustDomain_EBPMasterTrustEmployeeBenefitPlanMasterTrustTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonconsolidatedMasterTrustAndPlanInterestInMasterTrustDomain",
+            "relationships": [
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonconsolidatedMasterTrustMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonconsolidatedMasterTrustAndPlanInterestInMasterTrustDomain",
+                    "order": "1"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonconsolidatedPlanInterestInMasterTrustMember",
+                    "order": "2",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonconsolidatedMasterTrustAndPlanInterestInMasterTrustDomain"
+                }
+            ]
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable",
+            "relationships": [
+                {
+                    "order": "1",
+                    "target": "{http://fasb.org/us-gaap/2024}FairValueInputsLevel12And3Member",
+                    "source": "{http://fasb.org/us-gaap/2024}FairValueMeasurementsFairValueHierarchyDomain"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FairValueInputsLevel1Member",
+                    "order": "2",
+                    "source": "{http://fasb.org/us-gaap/2024}FairValueInputsLevel12And3Member"
+                },
+                {
+                    "order": "3",
+                    "target": "{http://fasb.org/us-gaap/2024}FairValueInputsLevel2Member",
+                    "source": "{http://fasb.org/us-gaap/2024}FairValueInputsLevel12And3Member"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FairValueInputsLevel3Member",
+                    "order": "4",
+                    "source": "{http://fasb.org/us-gaap/2024}FairValueInputsLevel12And3Member"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FairValueMeasurementsFairValueHierarchyDomain",
+                    "target": "{http://fasb.org/us-gaap/2024}FairValueMeasuredAtNetAssetValuePerShareMember",
+                    "order": "5"
+                }
+            ],
+            "domainConcept": "{http://fasb.org/us-gaap/2024}FairValueMeasurementsFairValueHierarchyDomain",
+            "domainID": "FairValueMeasurementsFairValueHierarchyDomain_EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable"
+        },
+        {
+            "domainID": "InvestmentTypeCategorizationMember_EBPMasterTrustEmployeeBenefitPlanMasterTrustTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPMasterTrustEmployeeBenefitPlanMasterTrustTable",
+            "relationships": [
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember",
+                    "order": "3"
+                },
+                {
+                    "order": "4",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember",
+                    "order": "5",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "6"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "7",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "8",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "9",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember"
+                },
+                {
+                    "order": "10",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "11"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "12",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "13",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember"
+                },
+                {
+                    "order": "14",
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "15"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "16",
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "17"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "18"
+                },
+                {
+                    "order": "19",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "20",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember"
+                },
+                {
+                    "order": "21",
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "22"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "23",
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "24"
+                },
+                {
+                    "order": "25",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "26"
+                },
+                {
+                    "order": "27",
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "28",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "29"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "30",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "order": "31",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember",
+                    "order": "32"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "33"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "34",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "order": "35",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "36",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "37"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember",
+                    "order": "38"
+                },
+                {
+                    "order": "39",
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "41"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "42",
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember"
+                },
+                {
+                    "order": "43",
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "44",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "45"
+                },
+                {
+                    "order": "46",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "47",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "48",
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "order": "49",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "50"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember",
+                    "order": "51"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "52"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "53",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "54"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "55",
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember"
+                }
+            ],
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+        },
+        {
+            "relationships": [
+                {
+                    "order": "61",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonparticipantDirectedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedMember",
+                    "order": "62",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain"
+                }
+            ],
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain",
+            "domainID": "EmployeeBenefitPlanParticipantDirectedStatusDomain_EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable"
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPReconciliationFinancialsToForm5500EmployeeBenefitPlanReconciliationToForm5500Table",
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPReconciliationFinancialsToForm5500EmployeeBenefitPlanReconciliationToForm5500Table"
+        },
+        {
+            "domainConcept": "{http://fasb.org/us-gaap/2024}DebtInstrumentNameDomain",
+            "domainID": "DebtInstrumentNameDomain_EBPDebtEmployeeBenefitPlanDebtTable",
+            "relationships": [],
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPDebtEmployeeBenefitPlanDebtTable"
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAllocationIncomeChangePlanEquityEmployeeBenefitPlanScheduleOfAllocationIncomeAndChangeInPlanEquityTable",
+            "domainID": "EntityDomain_EBPScheduleAllocationIncomeChangePlanEquityEmployeeBenefitPlanScheduleOfAllocationIncomeAndChangeInPlanEquityTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "relationships": []
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPRelatedPartyInInterestTransactionsEmployeeBenefitPlanRelatedPartyAndPartyInInterestTransactionsTable",
+            "relationships": [
+                {
+                    "order": "54",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTrusteeMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanManagementMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+                    "order": "55"
+                },
+                {
+                    "order": "56",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerDirectorMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+                    "order": "57",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerOfficerMember"
+                },
+                {
+                    "order": "58",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPrincipalHolderMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanOtherRelatedPartyAndPartyInInterestMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+                    "order": "59"
+                }
+            ],
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+            "domainID": "EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain_EBPRelatedPartyInInterestTransactionsEmployeeBenefitPlanRelatedPartyAndPartyInInterestTransactionsTable"
+        },
+        {
+            "domainID": "EntityDomain_EBPDescriptionOfPlanEmployeeBenefitPlanDescriptionOfPlanTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPDescriptionOfPlanEmployeeBenefitPlanDescriptionOfPlanTable",
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain"
+        },
+        {
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "relationships": [],
+            "domainID": "EntityDomain_EBPRelatedPartyInInterestTransactionsEmployeeBenefitPlanRelatedPartyAndPartyInInterestTransactionsTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPRelatedPartyInInterestTransactionsEmployeeBenefitPlanRelatedPartyAndPartyInInterestTransactionsTable"
+        },
+        {
+            "domainID": "InvestmentTypeCategorizationMember_EBPRelatedPartyInInterestTransactionsEmployeeBenefitPlanRelatedPartyAndPartyInInterestTransactionsTable",
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPRelatedPartyInInterestTransactionsEmployeeBenefitPlanRelatedPartyAndPartyInInterestTransactionsTable",
+            "relationships": [
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "1"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "2",
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember"
+                },
+                {
+                    "order": "3",
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember",
+                    "order": "4",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "5",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "6",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "7"
+                },
+                {
+                    "order": "8",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "9"
+                },
+                {
+                    "order": "10",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "11"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "12",
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "13"
+                },
+                {
+                    "order": "14",
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "15",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "16",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "17"
+                },
+                {
+                    "order": "18",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "19"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "20",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "21",
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember"
+                },
+                {
+                    "order": "22",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "23"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "24",
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "25"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "26",
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "27"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "order": "28"
+                },
+                {
+                    "order": "29",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "order": "30"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "31",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember",
+                    "order": "32",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember",
+                    "order": "33",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember"
+                },
+                {
+                    "order": "34",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "35",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember",
+                    "order": "36"
+                },
+                {
+                    "order": "37",
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "38",
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "39",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember"
+                },
+                {
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember",
+                    "order": "41",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember",
+                    "order": "42",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "43",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember",
+                    "order": "44",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "45",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "46"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "47"
+                },
+                {
+                    "order": "48",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember"
+                },
+                {
+                    "order": "49",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember"
+                },
+                {
+                    "order": "50",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "51",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "52"
+                },
+                {
+                    "order": "53",
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                }
+            ]
+        },
+        {
+            "domainID": "EntityDomain_EBPStatementChangeNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfChangeInNetAssetAvailableForBenefitTable",
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementChangeNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfChangeInNetAssetAvailableForBenefitTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "relationships": []
+        },
+        {
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "relationships": [],
+            "domainID": "EntityDomain_EBPTaxStatusEmployeeBenefitPlanTaxStatusTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPTaxStatusEmployeeBenefitPlanTaxStatusTable"
+        },
+        {
+            "relationships": [
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanUnallocatedMember",
+                    "order": "1"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocatedMember",
+                    "order": "2"
+                }
+            ],
+            "domainID": "EmployeeBenefitPlanAllocationStatusDomain_EBPScheduleAllocationIncomeChangePlanEquityEmployeeBenefitPlanScheduleOfAllocationIncomeAndChangeInPlanEquityTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAllocationIncomeChangePlanEquityEmployeeBenefitPlanScheduleOfAllocationIncomeAndChangeInPlanEquityTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain"
+        },
+        {
+            "domainID": "EntityDomain_AuditInformation",
+            "networkURI": "http://xbrl.sec.gov/dei/role/document/AuditInformation",
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain"
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAssetsHeldInvestmentEmployeeBenefitPlanScheduleOfAssetHeldForInvestmentTable",
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+            "domainID": "InvestmentTypeCategorizationMember_EBPScheduleAssetsHeldInvestmentEmployeeBenefitPlanScheduleOfAssetHeldForInvestmentTable",
+            "relationships": [
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "1"
+                },
+                {
+                    "order": "2",
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "3"
+                },
+                {
+                    "order": "4",
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "5",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "6",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "7",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember",
+                    "order": "8",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "9",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember",
+                    "order": "10",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember",
+                    "order": "11",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "12"
+                },
+                {
+                    "order": "13",
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "14"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "15",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "16"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "17",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "18"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "19",
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember"
+                },
+                {
+                    "order": "20",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "21",
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember",
+                    "order": "22",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "23",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember"
+                },
+                {
+                    "order": "24",
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "25"
+                },
+                {
+                    "order": "26",
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "27",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember"
+                },
+                {
+                    "order": "28",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "order": "29"
+                },
+                {
+                    "order": "30",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "31",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember"
+                },
+                {
+                    "order": "32",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember",
+                    "order": "33"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember",
+                    "order": "34",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "35"
+                },
+                {
+                    "order": "36",
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "37"
+                },
+                {
+                    "order": "38",
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "39"
+                },
+                {
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "41",
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "42"
+                },
+                {
+                    "order": "43",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "44",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "45",
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "46"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "47",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember"
+                },
+                {
+                    "order": "48",
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "49",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "50"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "51",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember"
+                },
+                {
+                    "order": "52",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember"
+                },
+                {
+                    "order": "53",
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                }
+            ]
+        },
+        {
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAllocationAssetLiabilityEmployeeBenefitPlanScheduleOfAllocationAssetAndLiabilityTable",
+            "domainID": "EmployeeBenefitPlanAllocationStatusDomain_EBPScheduleAllocationAssetLiabilityEmployeeBenefitPlanScheduleOfAllocationAssetAndLiabilityTable",
+            "relationships": [
+                {
+                    "order": "1",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanUnallocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+                    "order": "2"
+                }
+            ]
+        },
+        {
+            "domainID": "InvestmentTypeCategorizationMember_EBPScheduleAllocationAssetLiabilityEmployeeBenefitPlanScheduleOfAllocationAssetAndLiabilityTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAllocationAssetLiabilityEmployeeBenefitPlanScheduleOfAllocationAssetAndLiabilityTable",
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+            "relationships": [
+                {
+                    "order": "3",
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "4",
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember"
+                },
+                {
+                    "order": "5",
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "6",
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember"
+                },
+                {
+                    "order": "7",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "8"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "9",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember"
+                },
+                {
+                    "order": "10",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "11",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember"
+                },
+                {
+                    "order": "12",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "order": "13",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "14"
+                },
+                {
+                    "order": "15",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "16",
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "17",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember"
+                },
+                {
+                    "order": "18",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "19",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember"
+                },
+                {
+                    "order": "20",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember",
+                    "order": "21",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "22",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "23"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "24",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember"
+                },
+                {
+                    "order": "25",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "26"
+                },
+                {
+                    "order": "27",
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "28"
+                },
+                {
+                    "order": "29",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "30"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "order": "31"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "order": "32",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember",
+                    "order": "33",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "34",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "order": "35",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "36",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember",
+                    "order": "37"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "38",
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember"
+                },
+                {
+                    "order": "39",
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember",
+                    "order": "41",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "42",
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "43",
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "44",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "45"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "46",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "47"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "48"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "49"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "50",
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember"
+                },
+                {
+                    "order": "51",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember",
+                    "order": "52",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "53",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "54",
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "55",
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember"
+                }
+            ]
+        },
+        {
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "networkURI": "http://xbrl.sec.gov/dei/role/document/EntityInformationEntitiesTable",
+            "domainID": "EntityDomain_EntityInformationEntitiesTable",
+            "relationships": []
+        },
+        {
+            "relationships": [],
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAllocationAssetLiabilityEmployeeBenefitPlanScheduleOfAllocationAssetAndLiabilityTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPScheduleAllocationAssetLiabilityEmployeeBenefitPlanScheduleOfAllocationAssetAndLiabilityTable"
+        },
+        {
+            "networkURI": "http://xbrl.sec.gov/dei/role/document/DocumentInformation",
+            "domainID": "DocumentDomain_DocumentInformation",
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}DocumentDomain"
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleReportableTransactionsEmployeeBenefitPlanScheduleOfReportableTransactionTable",
+            "domainID": "EntityDomain_EBPScheduleReportableTransactionsEmployeeBenefitPlanScheduleOfReportableTransactionTable",
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain"
+        },
+        {
+            "networkURI": "http://xbrl.sec.gov/dei/role/document/EntityInformationEntityAddressesTable",
+            "relationships": [
+                {
+                    "order": "1",
+                    "target": "{http://xbrl.sec.gov/dei/2024}BusinessContactMember",
+                    "source": "{http://xbrl.sec.gov/dei/2024}AddressTypeDomain"
+                },
+                {
+                    "order": "2",
+                    "target": "{http://xbrl.sec.gov/dei/2024}FormerAddressMember",
+                    "source": "{http://xbrl.sec.gov/dei/2024}AddressTypeDomain"
+                },
+                {
+                    "target": "{http://xbrl.sec.gov/dei/2024}OtherAddressMember",
+                    "order": "3",
+                    "source": "{http://xbrl.sec.gov/dei/2024}AddressTypeDomain"
+                }
+            ],
+            "domainID": "AddressTypeDomain_EntityInformationEntityAddressesTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}AddressTypeDomain"
+        },
+        {
+            "domainID": "EmployeeBenefitPlanParticipantDirectedStatusDomain_EBPFullyBenefitResponsiveInvestmentEmployeeBenefitPlanFullyBenefitResponsiveInvestmentContractTable",
+            "relationships": [
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain",
+                    "order": "5",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonparticipantDirectedMember"
+                },
+                {
+                    "order": "6",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain"
+                }
+            ],
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFullyBenefitResponsiveInvestmentEmployeeBenefitPlanFullyBenefitResponsiveInvestmentContractTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain"
+        },
+        {
+            "domainID": "EntityDomain_EntityInformationEntityAddressesTable",
+            "networkURI": "http://xbrl.sec.gov/dei/role/document/EntityInformationEntityAddressesTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "relationships": []
+        },
+        {
+            "relationships": [],
+            "networkURI": "http://xbrl.sec.gov/dei/role/document/EntityInformationEntityListingsTable",
+            "domainID": "ExchangeDomain_EntityInformationEntityListingsTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}ExchangeDomain"
+        },
+        {
+            "domainID": "EntityDomain_EntityInformationEntityListingsTable",
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "networkURI": "http://xbrl.sec.gov/dei/role/document/EntityInformationEntityListingsTable"
+        },
+        {
+            "relationships": [],
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPSummaryAccountingPolicyEmployeeBenefitPlanAccountingPolicyTable",
+            "domainID": "EntityDomain_EBPSummaryAccountingPolicyEmployeeBenefitPlanAccountingPolicyTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain"
+        },
+        {
+            "domainID": "InvestmentTypeCategorizationMember_EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable",
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+            "relationships": [
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember",
+                    "order": "6",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "7"
+                },
+                {
+                    "order": "8",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember"
+                },
+                {
+                    "order": "9",
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "10",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "11",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "12",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "13",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember"
+                },
+                {
+                    "order": "14",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember",
+                    "order": "15",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "16",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "17"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "18",
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember"
+                },
+                {
+                    "order": "19",
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember",
+                    "order": "20"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember",
+                    "order": "21",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "22"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "23"
+                },
+                {
+                    "order": "24",
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "25",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember"
+                },
+                {
+                    "order": "26",
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "27"
+                },
+                {
+                    "order": "28",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "29"
+                },
+                {
+                    "order": "30",
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "31",
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "32",
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "33",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "order": "34",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "order": "35",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "36"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "37",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "order": "38",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember",
+                    "order": "39",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "41",
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember"
+                },
+                {
+                    "order": "42",
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember",
+                    "order": "43"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "44",
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "45"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "46",
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember",
+                    "order": "47",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "48",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember"
+                },
+                {
+                    "order": "49",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "50"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember",
+                    "order": "51",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "52"
+                },
+                {
+                    "order": "53",
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "54",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember",
+                    "order": "55",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "56",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "57"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "58",
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember"
+                }
+            ],
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable"
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementChangeNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfChangeInNetAssetAvailableForBenefitTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+            "relationships": [
+                {
+                    "order": "54",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanUnallocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+                    "order": "55"
+                }
+            ],
+            "domainID": "EmployeeBenefitPlanAllocationStatusDomain_EBPStatementChangeNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfChangeInNetAssetAvailableForBenefitTable"
+        },
+        {
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPScheduleAssetsAcquiredDisposedEmployeeBenefitPlanScheduleOfAssetAcquiredAndDisposedTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAssetsAcquiredDisposedEmployeeBenefitPlanScheduleOfAssetAcquiredAndDisposedTable",
+            "relationships": []
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPContributionEmployeeBenefitPlanContributionTable",
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPContributionEmployeeBenefitPlanContributionTable"
+        },
+        {
+            "domainID": "EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain_EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "relationships": [
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTrusteeMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+                    "order": "58"
+                },
+                {
+                    "order": "59",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanManagementMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+                    "order": "60",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerDirectorMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerOfficerMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+                    "order": "61"
+                },
+                {
+                    "order": "62",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPrincipalHolderMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanOtherRelatedPartyAndPartyInInterestMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanRelatedPartyAndPartyInInterestDomain",
+                    "order": "63"
+                }
+            ]
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPContributionEmployeeBenefitPlanContributionTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanContributionParticipatingEmployerDomain",
+            "domainID": "EmployeeBenefitPlanContributionParticipatingEmployerDomain_EBPContributionEmployeeBenefitPlanContributionTable",
+            "relationships": []
+        },
+        {
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPScheduleDelinquentParticipantContributionsEmployeeBenefitPlanScheduleOfDelinquentParticipantContributionTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleDelinquentParticipantContributionsEmployeeBenefitPlanScheduleOfDelinquentParticipantContributionTable",
+            "relationships": []
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementChangeNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfChangeInNetAssetAvailableForBenefitTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain",
+            "domainID": "EmployeeBenefitPlanParticipantDirectedStatusDomain_EBPStatementChangeNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfChangeInNetAssetAvailableForBenefitTable",
+            "relationships": [
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonparticipantDirectedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain",
+                    "order": "56"
+                },
+                {
+                    "order": "57",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain"
+                }
+            ]
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAssetsHeldInvestmentEmployeeBenefitPlanScheduleOfAssetHeldForInvestmentTable",
+            "relationships": [
+                {
+                    "order": "54",
+                    "target": "{http://fasb.org/srt/2024}MaximumMember",
+                    "source": "{http://fasb.org/srt/2024}RangeMember"
+                },
+                {
+                    "order": "55",
+                    "target": "{http://fasb.org/srt/2024}MinimumMember",
+                    "source": "{http://fasb.org/srt/2024}RangeMember"
+                },
+                {
+                    "target": "{http://fasb.org/srt/2024}WeightedAverageMember",
+                    "source": "{http://fasb.org/srt/2024}RangeMember",
+                    "order": "56"
+                }
+            ],
+            "domainConcept": "{http://fasb.org/srt/2024}RangeMember",
+            "domainID": "RangeMember_EBPScheduleAssetsHeldInvestmentEmployeeBenefitPlanScheduleOfAssetHeldForInvestmentTable"
+        },
+        {
+            "domainID": "EntityDomain_EBPDebtEmployeeBenefitPlanDebtTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPDebtEmployeeBenefitPlanDebtTable",
+            "relationships": []
+        },
+        {
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "domainID": "EntityDomain_EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "relationships": []
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFullyBenefitResponsiveInvestmentEmployeeBenefitPlanFullyBenefitResponsiveInvestmentContractTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPFullyBenefitResponsiveInvestmentEmployeeBenefitPlanFullyBenefitResponsiveInvestmentContractTable",
+            "relationships": []
+        },
+        {
+            "relationships": [],
+            "domainID": "EntityDomain_EBPScheduleAssetsHeldInvestmentEmployeeBenefitPlanScheduleOfAssetHeldForInvestmentTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAssetsHeldInvestmentEmployeeBenefitPlanScheduleOfAssetHeldForInvestmentTable",
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain"
+        },
+        {
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+            "domainID": "EmployeeBenefitPlanAllocationStatusDomain_EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable",
+            "relationships": [
+                {
+                    "order": "59",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanUnallocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+                    "order": "60",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocatedMember"
+                }
+            ]
+        },
+        {
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable"
+        },
+        {
+            "domainID": "InvestmentTypeCategorizationMember_EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "relationships": [
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "1"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember",
+                    "order": "2",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "3",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "4"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "5",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "6",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember",
+                    "order": "7"
+                },
+                {
+                    "order": "8",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "9",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember"
+                },
+                {
+                    "order": "10",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember",
+                    "order": "11",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "12"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "13"
+                },
+                {
+                    "order": "14",
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember",
+                    "order": "15",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "16"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "17",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "18"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "19"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "20",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "21"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "22",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "23"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "24",
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember"
+                },
+                {
+                    "order": "25",
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "26",
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "27",
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember"
+                },
+                {
+                    "order": "28",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "order": "29"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember",
+                    "order": "30"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "31"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "32",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember",
+                    "order": "33"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "34",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "35"
+                },
+                {
+                    "order": "36",
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "37",
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "38"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "39"
+                },
+                {
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "41",
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember",
+                    "order": "42",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "43",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember"
+                },
+                {
+                    "order": "44",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "45"
+                },
+                {
+                    "order": "46",
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "47",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember"
+                },
+                {
+                    "order": "48",
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "49"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember",
+                    "order": "50"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "51"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "52",
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember"
+                },
+                {
+                    "order": "53",
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                }
+            ],
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+        },
+        {
+            "domainID": "InvestmentTypeCategorizationMember_EBPScheduleAllocationIncomeChangePlanEquityEmployeeBenefitPlanScheduleOfAllocationIncomeAndChangeInPlanEquityTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPScheduleAllocationIncomeChangePlanEquityEmployeeBenefitPlanScheduleOfAllocationIncomeAndChangeInPlanEquityTable",
+            "relationships": [
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "3"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "4",
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "5"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "6",
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember"
+                },
+                {
+                    "order": "7",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "8",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "order": "9",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "10",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "11"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "12",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember",
+                    "order": "13",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember",
+                    "order": "14"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember",
+                    "order": "15",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "16",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember"
+                },
+                {
+                    "order": "17",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "18",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "19"
+                },
+                {
+                    "order": "20",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember",
+                    "order": "21",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "22",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "23"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "24",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember",
+                    "order": "25",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "26",
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember"
+                },
+                {
+                    "order": "27",
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "28"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "29"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "30",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "order": "31",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "order": "32"
+                },
+                {
+                    "order": "33",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember"
+                },
+                {
+                    "order": "34",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember",
+                    "order": "35"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "36",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "37"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "38",
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "39"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "41"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "42",
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember"
+                },
+                {
+                    "order": "43",
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "44",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "45",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember"
+                },
+                {
+                    "order": "46",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "47"
+                },
+                {
+                    "order": "48",
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "49"
+                },
+                {
+                    "order": "50",
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "51"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "52"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "53",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember"
+                },
+                {
+                    "order": "54",
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "55"
+                }
+            ],
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+        },
+        {
+            "relationships": [
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "1",
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "2",
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember"
+                },
+                {
+                    "order": "3",
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember",
+                    "order": "4",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "5"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "6"
+                },
+                {
+                    "order": "7",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "8"
+                },
+                {
+                    "order": "9",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "10"
+                },
+                {
+                    "order": "11",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "order": "12",
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "13",
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember"
+                },
+                {
+                    "order": "14",
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "15"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "16",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "17",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember"
+                },
+                {
+                    "order": "18",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "19"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "20",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "21"
+                },
+                {
+                    "order": "22",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "23",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "24",
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember"
+                },
+                {
+                    "order": "25",
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "26"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "27",
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "28",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "order": "29",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "order": "30"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "31",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "32",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember",
+                    "order": "33",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember",
+                    "order": "34"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember",
+                    "order": "35"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember",
+                    "order": "36",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember",
+                    "order": "37",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "38",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "39",
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember"
+                },
+                {
+                    "order": "41",
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "42"
+                },
+                {
+                    "order": "43",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "44",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "45"
+                },
+                {
+                    "order": "46",
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "47"
+                },
+                {
+                    "order": "48",
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "49"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "50",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember",
+                    "order": "51",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "52",
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "53"
+                }
+            ],
+            "domainID": "InvestmentTypeCategorizationMember_EBPStatementChangeNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfChangeInNetAssetAvailableForBenefitTable",
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementChangeNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfChangeInNetAssetAvailableForBenefitTable"
+        },
+        {
+            "domainID": "InvestmentTypeCategorizationMember_EBPFullyBenefitResponsiveInvestmentEmployeeBenefitPlanFullyBenefitResponsiveInvestmentContractTable",
+            "relationships": [
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "1",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember"
+                },
+                {
+                    "order": "2",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                }
+            ],
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFullyBenefitResponsiveInvestmentEmployeeBenefitPlanFullyBenefitResponsiveInvestmentContractTable",
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+        },
+        {
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+            "domainID": "EmployeeBenefitPlanAllocationStatusDomain_EBPFullyBenefitResponsiveInvestmentEmployeeBenefitPlanFullyBenefitResponsiveInvestmentContractTable",
+            "relationships": [
+                {
+                    "order": "3",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanUnallocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain"
+                },
+                {
+                    "order": "4",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain"
+                }
+            ],
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFullyBenefitResponsiveInvestmentEmployeeBenefitPlanFullyBenefitResponsiveInvestmentContractTable"
+        },
+        {
+            "domainID": "EmployeeBenefitPlanParticipantDirectedStatusDomain_EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "relationships": [
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain",
+                    "order": "56",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonparticipantDirectedMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain",
+                    "order": "57"
+                }
+            ],
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain"
+        },
+        {
+            "relationships": [
+                {
+                    "source": "{http://fasb.org/srt/2024}RangeMember",
+                    "order": "63",
+                    "target": "{http://fasb.org/srt/2024}MaximumMember"
+                },
+                {
+                    "order": "64",
+                    "target": "{http://fasb.org/srt/2024}MinimumMember",
+                    "source": "{http://fasb.org/srt/2024}RangeMember"
+                },
+                {
+                    "order": "65",
+                    "source": "{http://fasb.org/srt/2024}RangeMember",
+                    "target": "{http://fasb.org/srt/2024}WeightedAverageMember"
+                }
+            ],
+            "domainConcept": "{http://fasb.org/srt/2024}RangeMember",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable",
+            "domainID": "RangeMember_EBPFairValueNetAssetValuePracticalExpedientEmployeeBenefitPlanInvestmentFairValueAndNavTable"
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPNonparticipantDirectedInvestmentEmployeeBenefitPlanNonparticipantDirectedInvestmentTable",
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPNonparticipantDirectedInvestmentEmployeeBenefitPlanNonparticipantDirectedInvestmentTable"
+        },
+        {
+            "relationships": [],
+            "domainConcept": "{http://xbrl.sec.gov/dei/2024}EntityDomain",
+            "domainID": "EntityDomain_EBPMasterTrustEmployeeBenefitPlanMasterTrustTable",
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPMasterTrustEmployeeBenefitPlanMasterTrustTable"
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPNonparticipantDirectedInvestmentEmployeeBenefitPlanNonparticipantDirectedInvestmentTable",
+            "relationships": [
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain",
+                    "order": "1",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanNonparticipantDirectedMember"
+                }
+            ],
+            "domainID": "EmployeeBenefitPlanParticipantDirectedStatusDomain_EBPNonparticipantDirectedInvestmentEmployeeBenefitPlanNonparticipantDirectedInvestmentTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanParticipantDirectedStatusDomain"
+        },
+        {
+            "networkURI": "http://fasb.org/us-gaap/role/statement/EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable",
+            "domainConcept": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+            "relationships": [
+                {
+                    "order": "54",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanUnallocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocatedMember",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanAllocationStatusDomain",
+                    "order": "55"
+                }
+            ],
+            "domainID": "EmployeeBenefitPlanAllocationStatusDomain_EBPStatementNetAssetAvailableBenefitEmployeeBenefitPlanStatementOfNetAssetAvailableForBenefitTable"
+        },
+        {
+            "domainConcept": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+            "domainID": "InvestmentTypeCategorizationMember_EBPNonparticipantDirectedInvestmentEmployeeBenefitPlanNonparticipantDirectedInvestmentTable",
+            "relationships": [
+                {
+                    "order": "2",
+                    "target": "{http://fasb.org/us-gaap/2024}InterestBearingDepositsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "order": "3",
+                    "target": "{http://fasb.org/us-gaap/2024}CertificatesOfDepositMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "4",
+                    "target": "{http://fasb.org/us-gaap/2024}MoneyMarketFundsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap/2024}CommercialPaperMember",
+                    "order": "5"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "6",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "7",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "8",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasurySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryNotesSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "9"
+                },
+                {
+                    "order": "10",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryBillSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "11"
+                },
+                {
+                    "order": "12",
+                    "target": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}USGovernmentAgenciesShorttermDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}USTreasuryAndGovernmentMember",
+                    "order": "13"
+                },
+                {
+                    "order": "14",
+                    "target": "{http://fasb.org/us-gaap/2024}AssetBackedSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}CollateralizedMortgageObligationsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "15"
+                },
+                {
+                    "order": "16",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "17",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateBondSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "18",
+                    "target": "{http://fasb.org/us-gaap/2024}CorporateNoteSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "19",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertibleDebtSecuritiesMember"
+                },
+                {
+                    "order": "20",
+                    "target": "{http://fasb.org/us-gaap/2024}ShortTermDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "21",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorNotesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}SubordinatedDebtMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "22"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "order": "23",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedNotesMember"
+                },
+                {
+                    "order": "24",
+                    "target": "{http://fasb.org/us-gaap/2024}SeniorSubordinatedLoansMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "order": "25",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember",
+                    "target": "{http://fasb.org/us-gaap/2024}JuniorSubordinatedDebtMember"
+                },
+                {
+                    "order": "26",
+                    "target": "{http://fasb.org/us-gaap/2024}SovereignDebtSecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}FixedIncomeInvestmentsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "27"
+                },
+                {
+                    "order": "28",
+                    "target": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "order": "29"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassAMember",
+                    "order": "30"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockClassBMember",
+                    "order": "31",
+                    "source": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}CommonStockMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerCommonStockFundMember",
+                    "order": "32"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "33",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanEmployerPreferredStockMember",
+                    "order": "34",
+                    "source": "{http://fasb.org/us-gaap/2024}PreferredStockMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "35",
+                    "target": "{http://fasb.org/us-gaap/2024}PreferredNonConvertibleStockMember"
+                },
+                {
+                    "order": "36",
+                    "target": "{http://fasb.org/us-gaap/2024}ConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}ContingentConvertiblePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "order": "37"
+                },
+                {
+                    "order": "38",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember",
+                    "target": "{http://fasb.org/us-gaap/2024}NonredeemablePreferredStockMember"
+                },
+                {
+                    "order": "39",
+                    "target": "{http://fasb.org/us-gaap/2024}RedeemablePreferredStockMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "40",
+                    "target": "{http://fasb.org/us-gaap/2024}WarrantMember",
+                    "source": "{http://fasb.org/us-gaap/2024}EquitySecuritiesMember"
+                },
+                {
+                    "order": "41",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap/2024}PrivateEquityFundsMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}HedgeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "42"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "43",
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanRealEstateMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}DefinedBenefitPlanCommonCollectiveTrustMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "44"
+                },
+                {
+                    "order": "45",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanPooledSeparateAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "46"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember",
+                    "order": "47",
+                    "target": "{http://fasb.org/us-gaap/2024}EquityFundsMember"
+                },
+                {
+                    "order": "48",
+                    "target": "{http://fasb.org/us-gaap/2024}FixedIncomeFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "order": "49",
+                    "target": "{http://fasb.org/us-gaap/2024}BalancedFundsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}MutualFundMember"
+                },
+                {
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSelfDirectedBrokerageAccountMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "50"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "51",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanTraditionalGuaranteedInvestmentContractMember"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "target": "{http://fasb.org/us-gaap-ebp/2024}EmployeeBenefitPlanSyntheticInvestmentContractMember",
+                    "order": "52"
+                },
+                {
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember",
+                    "order": "53",
+                    "target": "{http://fasb.org/us-gaap/2024}DerivativeMember"
+                },
+                {
+                    "order": "54",
+                    "target": "{http://fasb.org/us-gaap/2024}OtherAggregatedInvestmentsMember",
+                    "source": "{http://fasb.org/us-gaap/2024}InvestmentTypeCategorizationMember"
+                }
+            ],
+            "networkURI": "http://fasb.org/us-gaap/role/disclosure/EBPNonparticipantDirectedInvestmentEmployeeBenefitPlanNonparticipantDirectedInvestmentTable"
+        }
+    ]
+}

@@ -1,0 +1,793 @@
+{
+    "documentInfo": {
+        "documentType": "https://xbrl.org/PWD/2023-05-17/cti",
+        "namespaces": [
+            {
+                "prefix": "exp",
+                "uri": "http://example.com/taxonomy"
+            },
+            {
+                "prefix": "dtr",
+                "uri": "http://www.xbrl.org/dtr/type/2022-03-31"
+            },
+            {
+                "prefix": "xbrli",
+                "uri": "http://www.xbrl.org/2003/instance"
+            },
+            {
+                "prefix": "enum2",
+                "uri": "http://xbrl.org/2020/extensible-enumerations-2.0"
+            }
+        ]
+    },
+    "taxonomy": {
+        "name": "Sample Taxonomy",
+        "namespace": "http://example.com/taxonomy",
+        "version": "1.0",
+        "entryPoint": "sample-taxonomy.json",
+        "importedTaxonomies": [
+            {
+                "namespace": "http://example.com/currency-taxonomy",
+                "version": "1.0",
+                "entryPoint": "currency-taxonomy.json"
+            }
+        ],
+        "concepts": [
+            {
+                "name": "exp:StatementOfIncome",
+                "dataType": "xbrli:string",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:ConceptID1",
+                "dataType": "xbrli:monetaryItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "balance": "credit",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:ConceptID2",
+                "dataType": "xbrli:monetaryItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "balance": "debit",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:GeographicCube",
+                "dataType": "xbrli:stringItemType",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}hypercubeItem",
+                "periodType": "duration",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:CountryDimension",
+                "dataType": "xbrli:stringItemType",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}dimensionItem",
+                "periodType": "duration",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "xbrl:PeriodDimension",
+                "dataType": "xbrli:stringItemType",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}dimensionItem",
+                "periodType": "duration",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:CountryDomain",
+                "dataType": "dtr:domainItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:Country_USA",
+                "dataType": "dtr:domainItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:Country_Canada",
+                "dataType": "dtr:domainItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:Country_UK",
+                "dataType": "dtr:domainItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:CountryLineItem",
+                "dataType": "xbrli:stringItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:Country",
+                "dataType": "enum2:enumerationSetItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "enumerationValues": {
+                    "domainID": "CountryDomain",
+                    "domainConcept": "exp:CountryDomain",
+                    "version": 2,
+                    "headUseable": "false"
+                },
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:SaleEventCube",
+                "dataType": "xbrli:stringItemType",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}hypercubeItem",
+                "periodType": "duration",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:SaleEventDimension",
+                "dataType": "xbrli:stringItemType",
+                "periodType": "duration",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}dimensionItem",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:EventDomain",
+                "dataType": "dtr:domainItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:EventDescription",
+                "dataType": "xbrli:stringItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:EventDate",
+                "dataType": "xbrli:dateItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:FunctionalCurrency",
+                "dataType": "xbrli:currencyItemType",
+                "substitutionGroup": "xbrli:item",
+                "periodType": "duration",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:FunctionalAmount",
+                "dataType": "xbrli:monetaryItemType",
+                "substitutionGroup": "xbrli:item",
+                "periodType": "duration",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:ReportingCurrency",
+                "dataType": "xbrli:currencyItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:ReportingAmount",
+                "dataType": "xbrli:monetaryItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:ProductIdentifier",
+                "dataType": "xbrli:stringItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:ProductIdentifierCube",
+                "dataType": "xbrli:stringItemType",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}hypercubeItem",
+                "periodType": "duration",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:ProductIdentifierDimension",
+                "dataType": "xbrli:stringItemType",
+                "periodType": "duration",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}dimensionItem",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:ProductDetailsDomain",
+                "dataType": "dtr:domainItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:ProductDescription",
+                "dataType": "xbrli:stringItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:IncomeStatementCube",
+                "dataType": "xbrli:stringItemType",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}hypercubeItem",
+                "periodType": "duration",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:IncomeStatementDomain",
+                "dataType": "dtr:domainItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:ReportDate",
+                "dataType": "xbrli:dateItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:PriorPeriod",
+                "dataType": "xbrli:dateItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:PeakGridElectricityDemand",
+                "dataType": "xbrli:powerItemType",
+                "periodType": "instant",
+                "substitutionGroup": "xbrli:item",
+                "abstract": false,
+                "nillable": true
+            },
+            {
+                "name": "exp:IntervalTimeSeriesCube",
+                "dataType": "xbrli:stringItemType",
+                "substitutionGroup": "{http://xbrl.org/2005/xbrldt}hypercubeItem",
+                "periodType": "duration",
+                "abstract": true,
+                "nillable": true
+            },
+            {
+                "name": "exp:TimeSeriesDomain",
+                "dataType": "dtr:domainItemType",
+                "periodType": "duration",
+                "substitutionGroup": "xbrli:item",
+                "abstract": true,
+                "nillable": true
+            }
+        ],
+        "roles":[
+            {
+                "roleID" : "country",
+                "roleURI": "http://example.com/roles/country" 
+            },
+            {
+                "roleID" : "incomeStatement",
+                "roleURI": "http://example.com/roles/income-statement" 
+            },
+            {
+                "roleID" : "saleEvent",
+                "roleURI": "http://example.com/roles/sale-event" 
+            },
+            {
+                "roleID" : "productListing",
+                "roleURI": "http://example.com/roles/product-listing" 
+            },
+            {
+                "roleID" : "peakTimeSeries",
+                "roleURI": "http://example.com/roles/peak-timeseries" 
+            },
+            {
+                "roleID" : "notes",
+                "roleURI": "http://example.com/roles/notes" 
+            }
+        ],
+        "relationshipTypes":[
+
+            {
+                "relationshipTypeId": "trait",
+                "relationshipTypeURI": "http://example.com/roles/concept-trait",
+                "cycles" : "none"
+            }
+        ],
+        "cubes": [
+            {
+                "cubeID": "GeographicCube",
+                "name": "exp:GeographicCube",
+                "cubeRoleId": "country",
+                "cubeType": "report",
+                "dimensions": [
+                    {
+                        "dimensionConcept": "exp:CountryDimension",
+                        "domainId": "CountryDomain",
+                        "dimensionType": "explicit"
+                    },
+                    {
+                        "dimensionConcept": "xbrl:PrimaryDimension",
+                        "domainID": "CountryLineItem",
+                        "dimensionType": "xbrl:concept"
+                    }
+                ]
+            },
+            {
+                "cubeID": "IncomeStatementCube",
+                "name": "exp:IncomeStatementCube",
+                "cubeRoleID": "incomeStatement",
+                "cubeType": "report",
+                "dimensions": [
+                    {
+                        "dimensionConcept": "xbrl:PrimaryDimension",
+                        "domainID": "IncomeStatementDomain",
+                        "dimensionType": "xbrl:concept"
+                    },
+                    {
+                        "dimensionConcept": "xbrl:PeriodDimension",
+                        "dimensionType": "xbrl:period",
+                        "use": "constrained"
+                    }
+                ],
+                "relationshipNetworks": [
+                    {
+                        "networkID": "network3",
+                        "comment": "Allows association of multiple calculation networks to a specific cube. Allows filer to indicate which calcs do apply to a cube rather than running all of them.  i.e. BS cube for parent vs sub are often different but the same calc runs on both."
+                    },
+                    {
+                        "networkID": "network2",
+                        "comment": "Allows association of presentation networks to a specific cube. This means a preferred label is know to be used with a specific cube."
+                    }
+                ],
+                "relationships": [
+                    {
+                        "relationshipType": "period-instant",
+                        "source": "xbrl:PeriodDimension",
+                        "target": "exp:ReportDate"
+                    },
+                    {
+                        "relationshipType": "period-instant",
+                        "source": "xbrl:PeriodDimension",
+                        "target": "exp:PriorPeriod"
+                    }
+                ]
+            },
+            {
+                "cubeID": "SaleEventCube",
+                "name": "exp:SaleEventCube",
+                "cubeRoleID": "saleEvent",
+                "cubeType": "event",
+                "dimensions": [
+                    {
+                        "dimensionConcept": "exp:SaleEventDimension",
+                        "domainDataType": "token",
+                        "dimensionType": "typed"
+                    },
+                    {
+                        "dimensionConcept": "xbrl:PrimaryDimension",
+                        "domainId": "EventDomain",
+                        "dimensionType": "xbrl:concept"
+                    },
+                    {
+                        "dimensionConcept": "xbrl:PeriodDimension",
+                        "dimensionType": "xbrl:period",
+                        "use": "excluded"
+                    }
+                ],
+                "relationships": [
+                    {
+                        "relationshipType": "dimension-period",
+                        "source": "exp:SaleEventDimension",
+                        "target": "exp:EventDate"
+                    },
+                    {
+                        "relationshipType": "fieldUnit-fieldValue",
+                        "source": "exp:FunctionalCurrency",
+                        "target": "exp:FunctionalAmount"
+                    },
+                    {
+                        "relationshipType": "fieldUnit-fieldValue",
+                        "source": "exp:ReportingCurrency",
+                        "target": "exp:ReportingAmount"
+                    },
+                    {
+                        "relationshipType": "event-reference",
+                        "source": "exp:ProductIdentifier",
+                        "target": "exp:ProductIdentifierDimension"
+                    }
+                ]
+            },
+            {
+                "cubeID": "ProductIdentifierCube",
+                "name": "exp:ProductIdentifierCube",
+                "cubeRoleID": "productListing",
+                "cubeType": "reference",
+                "dimensions": [
+                    {
+                        "dimensionConcept": "exp:ProductIdentifierDimension",
+                        "domainDataType": "token",
+                        "dimensionType": "typed"
+                    },
+                    {
+                        "dimensionConcept": "xbrl:PrimaryDimension",
+                        "domainId": "ProductDetailsDomain",
+                        "dimensionType": "xbrl:concept"
+                    },
+                    {
+                        "dimensionConcept": "xbrl:PeriodDimension",
+                        "dimensionType": "xbrl:period",
+                        "use": "excluded"
+                    }
+                ]
+            },
+            {
+                "cubeID": "IntervalTimeSeriesCube",
+                "name": "exp:IntervalTimeSeriesCube",
+                "cubeRoleId": "peakTimeseries",
+                "cubeType": "timeSeries",
+                "dimensions": [
+                    {
+                        "dimensionConcept": "xbrl:PrimaryDimension",
+                        "domainId": "TimeSeriesDomain",
+                        "dimensionType": "xbrl:concept"
+                    },
+                    {
+                        "dimensionConcept": "xbrl:PeriodDimension",
+                        "dimensionType": "xbrl:period",
+                        "use": "interval",
+                        "interval": "P60m",
+                        "populationSelector": "max"
+                    }
+                ]
+            }
+        ],
+        "networks": [
+            {
+                "networkID": "network1",
+                "networkRole": "http://example.com/roles/notes"
+            },
+            {
+                "networkID": "network2",
+                "networkRoleID": "incomeStatement",
+                "relationshipType": "parent-child",
+                "roots": ["exp:StatementOfIncome"],
+                "relationships": [
+                    {
+                        "source": "exp:StatementOfIncome",
+                        "target": "exp:ConceptID1"
+                    },
+                    {
+                        "source": "exp:ConceptID1",
+                        "target": "exp:ConceptID2"
+                    }
+                    ]
+            },
+            {
+                "networkID": "network3",
+                "networkRoleID": "incomeStatement",
+                "relationshipType": "summation-item",
+                "roots": ["exp:ConceptID1"],
+                "relationships": [
+                    {
+                        "source": "exp:ConceptID1",
+                        "target": "exp:ConceptID2",
+                        "weight": -1
+                    }
+                    ]
+            },
+            {
+                "networkID": "network4",
+                "networkRoleID": "notes",
+                "relationshipType": "general-special",
+                "roots": ["exp:ConceptID1"],
+                "relationships": [
+                    {
+                        "source": "exp:ConceptID1",
+                        "target": "exp:ConceptID2"
+                    }
+                    ]
+            }
+        ],
+        "domains": [
+            {
+                "domainId": "CountryDomain",
+                "domainRoleID": "country",
+                "domainConcept": "exp:CountryDomain",
+                "relationships": [
+                    {
+                        "source": "exp:CountryDomain",
+                        "target": "exp:Country_USA"
+                    },
+                    {
+                        "source": "exp:CountryDomain",
+                        "target": "exp:Country_Canada"
+                    },
+                    {
+                        "source": "exp:CountryDomain",
+                        "target": "exp:Country_UK"
+                    }
+                ]
+            },
+            {
+                "domainId": "CountryLineItem",
+                "domainRoleID": "country",
+                "domainConcept": "exp:CountryLineItem",
+                "relationships": [
+                    {
+                        "source": "exp:CountryLineItem",
+                        "target": "exp:Country"
+                    }
+                ]
+            },
+            {
+                "domainId": "TimeSeriesDomain",
+                "domainRoleID": "peakTimeseries",
+                "domainConcept": "exp:TimeSeriesDomain",
+                "relationships": [
+                    {
+                        "source": "exp:TimeSeriesDomain",
+                        "target": "exp:PeakGridElectricityDemand"
+                    }
+                ]
+            },
+            {
+                "domainId": "EventDomain",
+                "domainRoleID": "saleEvent",
+                "domainConcept": "exp:EventDomain",
+                "relationships": [
+                    {
+                        "source": "exp:EventDomain",
+                        "target": "exp:EventDescription"
+                    },
+                    {
+                        "source": "exp:EventDomain",
+                        "target": "exp:EventDate"
+                    },
+                    {
+                        "source": "exp:EventDomain",
+                        "target": "exp:FunctionalCurrency"
+                    },
+                    {
+                        "source": "exp:EventDomain",
+                        "target": "exp:FunctionalAmount"
+                    },
+                    {
+                        "source": "exp:EventDomain",
+                        "target": "exp:ReportingCurrency"
+                    },
+                    {
+                        "source": "exp:EventDomain",
+                        "target": "exp:ReportingAmount"
+                    },
+                    {
+                        "source": "exp:EventDomain",
+                        "target": "exp:Country"
+                    },
+                    {
+                        "source": "exp:EventDomain",
+                        "target": "exp:ProductIdentifier"
+                    }
+                ]
+            },
+            {
+                "domainId": "ProductDetailsDomain",
+                "domainRoleID": "productListing",
+                "domainConcept": "exp:ProductDetailsDomain",
+                "relationships": [
+                    {
+                        "source": "exp:ProductDetailsDomain",
+                        "target": "exp:ProductDescription"
+                    }
+                ]
+            },
+            {
+                "domainId": "IncomeStatementDomain",
+                "domainRoleID": "incomeStatement",
+                "domainConcept": "exp:IncomeStatementDomain",
+                "relationships": [
+                    {
+                        "source": "exp:IncomeStatementDomain",
+                        "target": "exp:StatementOfIncome"
+                    },
+                    {
+                        "source": "exp:StatementOfIncome",
+                        "target": "exp:ConceptID1"
+                    },
+                    {
+                        "source": "exp:StatementOfIncome",
+                        "target": "exp:ConceptID2"
+                    }
+                ]
+            }
+        ],
+        "labels": [
+            {
+                "relatedId": [
+                    "exp:StatementOfIncome"
+                ],
+                "language": "en",
+                "value": "Statement of Income",
+                "labelType": "standardLabel"
+            },
+            {
+                "relatedId": [
+                    "exp:StatementOfIncome"
+                ],
+                "language": "en",
+                "value": "The Statement of Income includes the total revenue and total expenses for a reporting period.",
+                "labelType": "definitionLabel"
+            },
+            {
+                "relatedId": [
+                    "exp:ConceptID1"
+                ],
+                "language": "en",
+                "value": "Total Revenue",
+                "labelType": "http://www.xbrl.org/2003/role/totalLabel"
+            },
+            {
+                "relatedId": [
+                    "exp:ConceptID2"
+                ],
+                "language": "en",
+                "value": "Total Expenses",
+                "labelType": "http://www.xbrl.org/2003/role/totalLabel"
+            },
+            {
+                "relatedId": [
+                    "exp:GeographicCube"
+                ],
+                "language": "en",
+                "value": "Geographic Information Cube",
+                "labelType": "http://www.xbrl.org/2003/role/label"
+            },
+            {
+                "relatedId": [
+                    "exp:CountryDimension"
+                ],
+                "language": "en",
+                "value": "Country Dimension",
+                "labelType": "http://www.xbrl.org/2003/role/label"
+            },
+            {
+                "relatedId": [
+                    "exp:CountryDomain"
+                ],
+                "language": "en",
+                "value": "Country Domain",
+                "labelType": "http://www.xbrl.org/2003/role/label"
+            },
+            {
+                "relatedId": [
+                    "exp:Country_USA"
+                ],
+                "language": "en",
+                "value": "United States",
+                "labelType": "http://www.xbrl.org/2003/role/label"
+            },
+            {
+                "relatedId": [
+                    "exp:Country_Canada"
+                ],
+                "language": "en",
+                "value": "Canada",
+                "labelType": "http://www.xbrl.org/2003/role/label"
+            },
+            {
+                "relatedId": [
+                    "exp:Country_UK"
+                ],
+                "language": "en",
+                "value": "United Kingdom",
+                "labelType": "http://www.xbrl.org/2003/role/label"
+            },
+            {
+                "relatedId": [
+                    "country"
+                ],
+                "language": "en",
+                "value": "Country",
+                "labelType": "http://www.xbrl.org/2003/role/label"
+            },
+            {
+                "relatedId": [
+                    "notes"
+                ],
+                "value": "Notes Network",
+                "labelType": "http://www.xbrl.org/2003/role/label",
+                "language": "en"
+            },
+            {
+                "relatedId": [
+                    "incomeStatement"
+                ],
+                "value": "Income Statement Network",
+                "labelType": "http://www.xbrl.org/2003/role/label",
+                "language": "en"
+            }
+            
+        ],
+        "references": [
+            {
+                "relatedId": [
+                    "exp:Country_USA",
+                    "exp:Country_Canada",
+                    "exp:Country_UK"
+                ],
+                "referenceType": "http://fasb.org/srt/role/changeNote/changeNote",
+                "parts": [
+                    {
+                        "name": "Publisher",
+                        "value": "Example Publisher"
+                    },
+                    {
+                        "name": "Name",
+                        "value": "Example Reference Name"
+                    },
+                    {
+                        "name": "Section",
+                        "value": "Example Section"
+                    },
+                    {
+                        "name": "Paragraph",
+                        "value": "Example Paragraph"
+                    }
+                ]
+            }
+        ],
+        "types": [
+            {
+                "name": "exp:monetaryPositiveItemType",
+                "builtInType": "decimal",
+                "description": "A monetary value."
+            }
+        ]
+    }
+}

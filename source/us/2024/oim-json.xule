@@ -1,0 +1,61 @@
+
+
+constant $XUSS = taxonomy('https://taxonomies.xbrl.us/standardized-statements/xusss.xsd')
+
+constant $CONVERT_TAXONOMY =  $XUSS
+
+constant $CUBES = $CONVERT_TAXONOMY.cubes
+
+constant $DIMENSIONS_EXPLICIT = filter $CONVERT_TAXONOMY.dimensions-explicit;
+
+constant $DIMENSIONS_TYPED = filter $CONVERT_TAXONOMY.dimensions-typed;
+
+constant $CONCEPT_DOMAIN = list(for $cube in $CUBES (filter $cube.primary-concepts.name where $item.local-name.contains('LineItems') returns $item).to-list.first)
+
+constant $CONCEPTS = filter $CONVERT_TAXONOMY.concepts where  not ($item.substitution.local-name == 'dimensionItem' or $item.substitution.local-name == 'hypercubeItem' or $item.name.local-name == 'hypercubeItem' or $item.name.local-name == 'dimensionItem' or $item.data-type.name.local-name == 'domainItemType' or $item.name in $CONCEPT_DOMAIN or $item.is-abstract);
+
+constant $ABSTRACTS = filter $CONVERT_TAXONOMY.concepts where $item.is-abstract and not ($item.substitution.local-name == 'dimensionItem' or $item.substitution.local-name == 'hypercubeItem' or $item.name.local-name == 'hypercubeItem' or $item.name.local-name == 'dimensionItem' or $item.data-type.name.local-name == 'domainItemType' or $item.name in $CONCEPT_DOMAIN)
+
+constant $MEMBERS filter $CONVERT_TAXONOMY.concepts where $item.data-type.name.local-name == 'domainItemType'
+
+constant $BASE_TYPES = dict(
+    list(xbrli:decimalItemType, "xs:decimal"),
+    list(xbrli:floatItemType,"xs:float"),
+    list(xbrli:doubleItemType,"xs:double"),
+    list(xbrli:integerItemType,"xs:integer"),
+    list(xbrli:nonPositiveIntegerItemType,"xs:nonPositiveInteger"),
+    list(xbrli:negativeIntegerItemType,"xs:negativeInteger"),
+    list(xbrli:longItemType,"xs:long"),
+    list(xbrli:intItemType,"xs:int"),
+    list(xbrli:shortItemType,"xs:short"),
+    list(xbrli:byteItemType,"xs:byte"),
+    list(xbrli:nonNegativeIntegerItemType,"xs:nonNegativeInteger"),
+    list(xbrli:unsignedLongItemType,"xs:unsignedLong"),
+    list(xbrli:unsignedIntItemType,"xs:unsignedInt"),
+    list(xbrli:unsignedShortItemType,"xs:unsignedShort"),
+    list(xbrli:unsignedByteItemType,"xs:unsignedByte"),
+    list(xbrli:positiveIntegerItemType,"xs:positiveInteger"),
+    list(xbrli:monetaryItemType,"xbrli:monetary"),
+    list(xbrli:sharesItemType,"xbrli:shares"),
+    list(xbrli:pureItemType,"xbrli:pure"),
+    list(xbrli:stringItemType,"xs:string"),
+    list(xbrli:booleanItemType,"xs:Boolean"),
+    list(xbrli:hexBinaryItemType,"xs:hexBinary"),
+    list(xbrli:base64BinaryItemType,"xs:base64Binary"),
+    list(xbrli:anyURIItemType,"xs:anyURI"),
+    list(xbrli:QNameItemType,"xs:QName"),
+    list(xbrli:durationItemType,"xs:duration"),
+    list(xbrli:dateTimeItemType,"xbrli:dateUnion"),
+    list(xbrli:timeItemType,"xs:time"),
+    list(xbrli:dateItemType,"xs:date"),
+    list(xbrli:gYearMonthItemType,"xs:gYearMonth"),
+    list(xbrli:gYearItemType,"xs:gYear"),
+    list(xbrli:gMonthDayItemType,"xs:gMonthDay"),
+    list(xbrli:gDayItemType,"xs:gDay"),
+    list(xbrli:gMonthItemType,"xs:gMonth"),
+    list(xbrli:normalizedStringItemType,"xs:normalizedString"),
+    list(xbrli:tokenItemType,"xs:token"),
+    list(xbrli:languageItemType,"xs:language"),
+    list(xbrli:NameItemType,"xs:Name"),
+    list(xbrli:NCNameItemType,"xs:NCName"),
+)

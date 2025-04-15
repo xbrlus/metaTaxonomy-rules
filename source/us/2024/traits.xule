@@ -13,7 +13,9 @@ output-attribute file-append
 
 /** CONSTANTS **/ 
 
-constant $META-2025 = taxonomy('https://xbrl.fasb.org/meta/dev/us-gaap-metaModel-entire-2025.xsd')
+/**constant $META-2025 = taxonomy('https://xbrl.fasb.org/meta/dev/us-gaap-metaModel-entire-2025.xsd')**/
+
+constant $META-2025 = taxonomy('/Users/campbellpryde/Documents/GitHub/us-gaap-meta-model/WorkingTaxonomy/us-gaap-metaModel-entire-2025.xsd')
 
 constant $RETAINED_EARNINGS_OUT = navigate 'http://www.xbrl.org/2021/arcrole/instant-outflow' children from RetainedEarningsAccumulatedDeficit taxonomy $META-2025 returns set(target)
 
@@ -37,13 +39,15 @@ constant $TRAIT_VALUES = list(for $domain in $TRAIT_DOMAIN
 
 constant $INCOME_STATEMENT_ITEMS = navigate parent-child descendants from list(IncomeStatementAbstract, SupplementalIncomeStatementElementsAbstract) taxonomy $US-GAAP where $relationship.target.is-abstract != true and $relationship.target.is-monetary == true returns set(target-name)
 
+constant $OCI_CALC_ITEMS = navigate summation-item descendants from list(OtherComprehensiveIncomeLossTaxPortionAttributableToParent1, OtherComprehensiveIncomeLossBeforeTaxPortionAttributableToParent, OtherComprehensiveIncomeLossNetOfTaxPortionAttributableToParent, MarketRiskBenefitBeforeReinsuranceAndCumulativeIncreaseDecreaseFromInstrumentSpecificCreditRiskChange, DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeNetPriorServiceCostCreditBeforeTax, DefinedBenefitPlanAmountsRecognizedInOtherComprehensiveIncomeLossNetGainLossBeforeTax) taxonomy $US-GAAP returns set (target)
+
 /**ASSETS WITH NO BALANCE**/
 
 output loss_items_not_in_RE
 
 $loss-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:LossMember))
 
-(dict(list(rule-name(),list(for $element in ($loss-prop - $RETAINED_EARNINGS_OUT).to-list.name
+(dict(list(rule-name(),list(for $element in ($loss-prop - ($RETAINED_EARNINGS_OUT + $OCI_CALC_ITEMS)).to-list.name
                                 list($element)))))
 
 file-location 'traits.xlsx'
@@ -55,7 +59,7 @@ output gain_items_not_in_RE
 
 $gain-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:GainMember))
 
-(dict(list(rule-name(),list(for $element in ($gain-prop - $RETAINED_EARNINGS_IN).to-list.name
+(dict(list(rule-name(),list(for $element in ($gain-prop - ($RETAINED_EARNINGS_IN + $OCI_CALC_ITEMS)).to-list.name
                                 list($element)))))
 
 file-location 'traits.xlsx'
@@ -294,7 +298,7 @@ file-content $rule-value.to-spreadsheet
 output multi-trait-2
 $META-2025.concept(ForeignCurrencyFairValueHedgeAssetAtFairValue).traits
 
-/**Other with no calculation parent **/
+/**OTHER WITH NO CALCULATION PARENT **/
 output Agg_other_diff_calc_parent
 
 dict(list(rule-name(),list(list('Other Item','Calculation Parent', 'Agg of Other')) +  list(for $otherItem in $OTHER_ITEMS
@@ -364,7 +368,9 @@ file-content $rule-value.to-spreadsheet
 
 output IS_item_no_RE
 
-$IS_item_no_RE = $INCOME_STATEMENT_ITEMS - ($RETAINED_EARNINGS_OUT.name + $RETAINED_EARNINGS_IN.name) 
+$metricItems = $META-2025.concepts-by-trait(list(us-gaap-metaModel:MetricMember))
+
+$IS_item_no_RE = $INCOME_STATEMENT_ITEMS - ($RETAINED_EARNINGS_OUT.name + $RETAINED_EARNINGS_IN.name + $metricItems.name) 
 
 
 (dict(list(rule-name(),list(for $element in ($IS_item_no_RE).to-list
@@ -372,3 +378,46 @@ $IS_item_no_RE = $INCOME_STATEMENT_ITEMS - ($RETAINED_EARNINGS_OUT.name + $RETAI
 
 file-location 'traits.xlsx'
 file-content $rule-value.to-spreadsheet
+
+
+output future_expenses
+$future_expenses = $META-2025.concepts-by-trait(list(us-gaap-metaModel:EstimatedFutureExpenseRevenueMember))
+
+$future_expenses
+
+
+output Asset-Liability-duration
+
+$Equity-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:EquityMemberMM))
+$Asset-prop = $META-2025.concepts-by-trait(list(AssetsMember))
+$ContraAsset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraAssetMember))
+$Asset-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraAssetMember))
+$ContraLiability-prop = $META-2025.concepts-by-trait(list(us-gaap-metaModel:ContraLiabilityMember))
+$Liability-prop = $META-2025.concepts-by-trait(list(LiabilityMember))
+$All_Instance = $Equity-prop + $Asset-prop + $ContraAsset-prop + $Asset-prop + $ContraLiability-prop + $Liability-prop
+
+$items = filter $All_Instance where $item.period-type == duration returns $item.name;
+
+
+(dict(list(rule-name(),list(for $element in ($items).to-list
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+output metrics
+$META-2025.concepts-by-trait(list(us-gaap-metaModel:MetricMember))
+
+output OCI_IN_RE
+
+$IS_item_no_RE = ($RETAINED_EARNINGS_OUT.name + $RETAINED_EARNINGS_IN.name).intersect($OCI_CALC_ITEMS.name)
+
+(dict(list(rule-name(),list(for $element in ($IS_item_no_RE).to-list
+                                list($element)))))
+
+file-location 'traits.xlsx'
+file-content $rule-value.to-spreadsheet
+
+
+output Revenues
+$META-2025.concepts-by-trait(list(us-gaap-metaModel:RevenueMember))
