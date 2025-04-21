@@ -6,3 +6,5 @@ python ~/arelle/Arelle-master/arellecmdline.py --plugin xule-old/savexuleqnames 
 
 
 python3.12 ~/Arelle/Arelle-master/arellecmdline.py --plugins 'xule|transforms/SEC|validate/EFM|inlineXbrlDocumentSet' -f /Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip -v --xule-time .000 --xule-debug --noCertificateCheck   --logFile  /Users/campbellpryde/Documents/GitHub/metaTaxonomy-rules/output/xuss.xml --xule-rule-set /Users/campbellpryde/Documents/GitHub/metaTaxonomy-rules/meta-2025-ruleset.zip --xule-run-only xuss_taxonomy
+
+python3.12 ~/Arelle/Arelle-master/arellecmdline.py --plugins 'xule|transforms/SEC|validate/EFM|inlineXbrlDocumentSet' -f /Users/campbellpryde/Downloads/0000038777-23-000009-xbrl.zip -v --xule-time .000 --xule-debug --noCertificateCheck   --logFile  /Users/campbellpryde/Documents/GitHub/metaTaxonomy-rules/output/xuss2.xml --xule-rule-set /Users/campbellpryde/Documents/GitHub/metaTaxonomy-rules/meta-2025-ruleset.zip --xule-run-only test_taxonomy

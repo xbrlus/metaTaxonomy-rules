@@ -1,22 +1,134 @@
 
 
-constant $XUSS = taxonomy('https://taxonomies.xbrl.us/standardized-statements/xusss.xsd')
+/**constant $CONVERT_TAXONOMY = taxonomy('https://taxonomies.xbrl.us/standardized-statements/xusss.xsd')**/
+constant $CONVERT_TAXONOMY = taxonomy('https://eCollection.ferc.gov/taxonomy/form60/2025-04-01/form/form60/form-60_2025-04-01.xsd')
 
-constant $CONVERT_TAXONOMY =  $XUSS
+
+constant $TAXONOMY_NAME = "FERC Form 60 2025-04-01"
+constant $TAXONOMY_PREFIX = "ferc"
+
+constant $FAMILY_NAME = "FERC Form 60"
+
+constant $NAMESPACES = filter $CONVERT_TAXONOMY.namespaces where $item not in list("http://www.xbrl.org/2003/linkbase","http://xbrl.org/2008/generic", "http://www.w3.org/1999/xlink", "http://www.xbrl.org/2003/XLink", "http://xbrl.org/2005/xbrldt", "http://www.xbrl.org/dtr/type/2020-01-21")
 
 constant $CUBES = $CONVERT_TAXONOMY.cubes
 
-constant $DIMENSIONS_EXPLICIT = filter $CONVERT_TAXONOMY.dimensions-explicit;
+constant $DIMENSIONS_EXPLICIT = filter $CONVERT_TAXONOMY.dimensions-explicit
 
-constant $DIMENSIONS_TYPED = filter $CONVERT_TAXONOMY.dimensions-typed;
+constant $DIMENSIONS_TYPED = filter $CONVERT_TAXONOMY.dimensions-typed
+
+constant $DIMENSIONS = filter $CONVERT_TAXONOMY.dimensions
 
 constant $CONCEPT_DOMAIN = list(for $cube in $CUBES (filter $cube.primary-concepts.name where $item.local-name.contains('LineItems') returns $item).to-list.first)
 
-constant $CONCEPTS = filter $CONVERT_TAXONOMY.concepts where  not ($item.substitution.local-name == 'dimensionItem' or $item.substitution.local-name == 'hypercubeItem' or $item.name.local-name == 'hypercubeItem' or $item.name.local-name == 'dimensionItem' or $item.data-type.name.local-name == 'domainItemType' or $item.name in $CONCEPT_DOMAIN or $item.is-abstract);
+constant $OLD_CONCEPTS = filter $CONVERT_TAXONOMY.concepts where not ($item.substitution.local-name == 'hypercubeItem' or $item.name.local-name == 'hypercubeItem')
+
+constant $CONCEPTS = filter $CONVERT_TAXONOMY.concepts where  not ($item.substitution.local-name == 'dimensionItem' or $item.substitution.local-name == 'hypercubeItem' or $item.name.local-name == 'hypercubeItem' or $item.name.local-name == 'dimensionItem' or $item.data-type.name.local-name == 'domainItemType' or $item.name in $CONCEPT_DOMAIN or $item.is-abstract)
 
 constant $ABSTRACTS = filter $CONVERT_TAXONOMY.concepts where $item.is-abstract and not ($item.substitution.local-name == 'dimensionItem' or $item.substitution.local-name == 'hypercubeItem' or $item.name.local-name == 'hypercubeItem' or $item.name.local-name == 'dimensionItem' or $item.data-type.name.local-name == 'domainItemType' or $item.name in $CONCEPT_DOMAIN)
 
-constant $MEMBERS filter $CONVERT_TAXONOMY.concepts where $item.data-type.name.local-name == 'domainItemType'
+constant $MEMBERS = filter $CONVERT_TAXONOMY.concepts where $item.data-type.name.local-name == 'domainItemType' 
+
+constant $NETWORKS_NO_LABELS = filter  $CONVERT_TAXONOMY.networks where not $item.role.uri.contains('http://www.xbrl.org/2003/role/link')
+
+constant $NETWORKS_NO_DIMS = filter $NETWORKS_NO_LABELS where not ($item.arcrole.uri.contains('domain-member') or $item.arcrole.uri.contains('dimension-domain') or $item.arcrole.uri.contains('dimension-default') or $item.arcrole.uri.contains('all') or $item.arcrole.uri.contains('hypercube-dimension'))
+
+constant $COLLAPSED_NETWORKS  = ((filter $NETWORKS_NO_LABELS returns list($item.role.uri, $item.role.description)).to-set).to-list.sort("asc")
+
+constant $EXT_ENUMS = filter $CONVERT_TAXONOMY.concepts where $item.attribute(enum2:linkrole) != none
+
+constant $EXT_ENUMS_SET = (filter $EXT_ENUMS returns list($item.attribute(enum2:domain).to-qname, $item.attribute(enum2:linkrole))).to-set
+
+constant $TYPES = filter $OLD_CONCEPTS where $item.data-type.name.namespace-uri not in list("http://www.xbrl.org/dtr/type/2022-03-31", "http://www.xbrl.org/dtr/type/non-numeric", "http://www.xbrl.org/dtr/type/numeric", "http://www.xbrl.org/2003/instance", "http://www.w3.org/2001/XMLSchema") returns $item.data-type
+                            
+constant $REF_NAME_A = dict(for $count in range($OLD_CONCEPTS.count)
+                                $ConceptsList = $OLD_CONCEPTS.to-list
+                                $concept = $ConceptsList[$count]
+                                list($concept,$count)
+)
+
+constant $REFERENCES = list(for $concept in $OLD_CONCEPTS
+                            for $ref_count in range($concept.all-references.count)
+                            $ref_list = $concept.all-references.to-list
+                            dict(list("relatedNames",list(if $LOOKUP_CHANGED_DOMAINS[$concept.name] == none $concept.name else $LOOKUP_CHANGED_DOMAINS[$concept.name])),
+                            list("referenceType","xbrl:" + $ref_list[$ref_count].role-uri.split('\/').last),
+                            list("name", qname($CONVERT_TAXONOMY.entry-point-namespace, "R_" + string($REF_NAME_A[$concept]) + "_" + string($ref_count))),
+                            list("properties",list(
+                                  for $partItem in  $ref_list[$ref_count].parts
+                                              dict(list($partItem.name.clark, $partItem.part-value))
+                                              )
+                                  )
+                                )
+                  )
+
+constant $NETWORKS = list("networks",list(for $network in  $NETWORKS_NO_DIMS
+          dict(
+              list("name", $network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network"),
+              list("relationshipTypeName","xbrl:" + $network.arcrole.uri.split('\/').last),
+              list("roots",list(for $root in $network.roots $root.name )),
+              list("relationships",list(for $relationship in filter $network.relationships 
+                  dict(
+                      list("source", if $LOOKUP_CHANGED_DOMAINS[$relationship.source.name] == none $relationship.source.name else $LOOKUP_CHANGED_DOMAINS[$relationship.source.name]),
+                      list("target", if $LOOKUP_CHANGED_DOMAINS[$relationship.target.name] == none $relationship.target.name else $LOOKUP_CHANGED_DOMAINS[$relationship.target.name]),
+                      list("order",$relationship.order),
+                      if $relationship.weight != none list("weight",$relationship.weight) else skip,
+                      if $relationship.preferred-label != none list("preferredLabel",$relationship.preferred-label) else skip,
+                      )
+                  )
+              ),
+          )
+        )
+      )
+
+      
+
+constant $DIMENSION_DOMAINS = list(for $dimension in $DIMENSIONS
+      if $dimension.dimension-type == 'explicit'
+      dict(
+          /**list("networkURI",$dimension.cube.drs-role.uri),**/
+          list("name",qname($dimension.default.name.namespace-uri,$dimension.default.name.local-name + "_" + $dimension.cube.drs-role.uri.split('\/').last)),
+          list("relationships",list(for $relationship in navigate domain-member descendants from $dimension.default.name role $dimension.cube.drs-role taxonomy $CONVERT_TAXONOMY  returns list (source-name, target-name, order)
+              dict(list("source",$relationship[1]),
+                  list("target",$relationship[2]),
+                  list("order",$relationship[3].number)
+                  )
+                ) 
+              )
+          )
+        else skip
+        )
+
+constant $PRIMARY_DOMAINS = list(for $cube in $CUBES
+      dict(
+          list("name",qname($cube.cube-concept.name.namespace-uri,$cube.cube-concept.name.local-name + "_" + $cube.drs-role.uri.split('\/').last)),
+          list("relationships",list(for $relationship in navigate domain-member descendants from (filter $cube.primary-concepts.name where $item.local-name.contains('LineItems') returns $item) role $cube.drs-role taxonomy $CONVERT_TAXONOMY  returns list (source-name, target-name, order)
+              dict(list("source",$relationship[1]),
+                  list("target",$relationship[2]),
+                  list("order",$relationship[3].number)
+                  )
+                ) 
+              ) 
+          )
+        )
+
+constant $EXTENUM_DOMAINS = list(for $enum in $EXT_ENUMS_SET
+      dict(
+          list("domainName",$enum[1].local-name + "_" + $enum[2].split('\/').last),
+          list("relationships",list(for $relationship in navigate domain-member descendants from ($enum[1]) role $enum[2] taxonomy $CONVERT_TAXONOMY  returns list (source-name, target-name, order)
+              dict(list("source",$relationship[1]),
+                  list("target",$relationship[2]),
+                  list("order",$relationship[3].number)
+                  )
+                ) 
+              ) 
+          )
+        )
+
+constant $LOOKUP_CHANGED_DOMAINS = dict(for $cube in $CUBES
+                      $d_name = ((filter $cube.primary-concepts.name where $item.local-name.contains('LineItems') returns $item).to-list.first)
+                      list($d_name, $d_name.clark + "_" + $cube.drs-role.uri.split('\/').last)
+                      )
+
 
 constant $BASE_TYPES = dict(
     list(xbrli:decimalItemType, "xs:decimal"),
@@ -58,4 +170,178 @@ constant $BASE_TYPES = dict(
     list(xbrli:languageItemType,"xs:language"),
     list(xbrli:NameItemType,"xs:Name"),
     list(xbrli:NCNameItemType,"xs:NCName"),
+    list(num:perShareItemType,"xbrli:perShare"),
+    list(num:percentItemType,"xbrli:percent"),
+    list(nonnum:textBlockItemType,"xbrli:textBlock")
 )
+
+
+constant $namespaceDict = dict(
+    list("http://fasb.org/us-gaap/2024", "us-gaap"),
+    list("http://fasb.org/srt/2024", "srt"),
+    list("http://www.xbrl.org/2003/iso4217", "iso4217"),
+    list("http://xbrl.sec.gov/dei/2024", "dei"),
+    list("http://xbrl.sec.gov/country/2024", "country"),
+    list("http://www.xbrl.org/2003/instance", "xbrli"),
+    list("http://xbrl.sec.gov/exch/2024", "exch"),
+    list("http://xbrl.sec.gov/currency/2024", "currency"),
+    list("http://xbrl.sec.gov/stpr/2024", "stpr"),
+    list("http://xbrl.sec.gov/sic/2024", "sic"),
+    list("http://xbrl.sec.gov/naics/2024", "naics"),
+    list("http://www.xbrl.org/dtr/type/non-numeric", "nonnum"),
+    list("http://www.xbrl.org/dtr/type/numeric", "num"),
+    list("http://fasb.org/us-types/2024", "us-types"),
+    list("http://fasb.org/srt-types/2024", "srt-types"),
+    list("http://fasb.org/dqcrules/2024", "dqcrules"),
+    list("http://fasb.org/dqcrules-0015/2024", "dqcrules15"),
+    list("http://www.xbrl.org/dtr/type/2022-03-31", "dtr-types"),
+    list("http://xbrl.org/2020/extensible-enumerations-2.0", "enum2"),
+    list("http://xbrl.org/2005/xbrldt", "xbrldt"),
+    list("http://xbrl.sec.gov/ecd/2024", "ecd"),
+    list("http://fasb.org/us-gaap-ebp/2024", "us-gaap-ebp"),
+    list("http://fasb.org/us-gaap-metaModel/2025", "us-gaap-metaModel"),
+    list("http://www.w3.org/2001/XMLSchema", "xs"),
+    list("https://taxonomies.xbrl.us/standardized-statements", "xuss"),
+    list("http://ferc.gov/form/2025-04-01/ferc", "ferc"),
+    list("http://www.ferc.gov/form/parts", "ferc-parts"),
+    list("http://ferc.gov/form/2025-04-01/types", "ferc-types")
+)
+
+output types
+$TYPES
+
+output test_taxonomy
+
+dict(
+    list("documentInfo",dict(
+      list("documentType","https://xbrl.org/PWD/2025-01-31/oim"),
+      list("namespaces",list(for $namespace in $NAMESPACES
+          dict(list("prefix",$namespaceDict[$namespace]),
+              list("uri",$namespace)
+              )
+        )
+        + list(
+          dict(list("prefix","xbrl"), 
+              list("uri","https://xbrl.org/2025")
+              )
+        )
+      )
+      )
+    ),
+    list("taxonomy",dict(
+      list("name",$TAXONOMY_NAME),
+      list("frameworkName",$FAMILY_NAME),
+      list("abstracts",list(for $abstract in  $ABSTRACTS
+        dict(
+            list("name",$abstract.name)
+        )
+      )
+      ),
+      list("members",list(for $member in  $MEMBERS
+        dict(
+            list("name",$member.name)
+        )
+      )
+      ),
+      list("concepts", list(for $concept in $CONCEPTS
+          dict(
+            list("name",$concept.name),
+            list("nillable",true),
+            list("periodType",$concept.period-type),
+            if $concept.balance != none
+                list("properties",list(
+                  dict(list("xbrl:balance",$concept.balance)
+                  )
+                )
+                )
+            else
+                list(),
+            list("dataType",if $BASE_TYPES[$concept.data-type.name] == none $concept.data-type.name else $BASE_TYPES[$concept.data-type.name]),
+            if $concept.attribute(enum2:linkrole) != none
+              list("enumerationValues",
+                dict(
+                    list("headUsable",$concept.attribute(enum2:headUsable)),
+                    list("domainName",$concept.attribute(enum2:domain).to-qname.local-name + "_Object")
+                    )
+            )
+            else list()
+            )
+          )
+        ),
+        list("groups",list(for $role in $COLLAPSED_NETWORKS
+          dict(list("name",qname($CONVERT_TAXONOMY.entry-point-namespace, $role.first.split('\/').last + "Group")),
+              list("groupURI",$role.first)
+          )
+        )
+      ),
+      list("groupContents",list(
+          for $role in $COLLAPSED_NETWORKS
+            dict(
+                list("groupName",qname($CONVERT_TAXONOMY.entry-point-namespace, $role.first.split('\/').last + "Group")),
+                list("relatedNames", list(for $network in filter $NETWORKS_NO_DIMS where ($item.arcrole.uri.contains('parent-child') or $item.arcrole.uri.contains('summation-item')) and $item.role.uri == $role.first
+                                          qname($CONVERT_TAXONOMY.entry-point-namespace, $network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")
+                                          )
+                            )
+                )
+          )
+            
+      ),
+      list("dimensions",list(for $dimension in $DIMENSIONS
+        dict(list("name",$dimension.concept.name),
+            if $dimension.dimension-type == 'typed'
+                list("domainDataType","xs:token")  // TODO Need a function to return the type of a typed dimension
+            else
+                list(),
+        )
+      )
+      ),
+      list("labels",list(for $concept in $OLD_CONCEPTS
+                            for $label in $concept.all-labels
+          dict(list("relatedName",$concept.name),
+              list("language",$label.lang),
+                    list("value",$label.text),
+                    list("labelType","xbrl:" + $label.role.uri.split('\/').last)
+                  )
+          )
+      ),
+      list("references",$REFERENCES
+      ),
+      $NETWORKS,
+      list("cubes",list(for $cube in $CUBES
+          dict(list("name", qname($cube.cube-concept.name.namespace-uri,$cube.cube-concept.name.local-name + "_" + $cube.drs-role.uri.split('\/').last + "_Cube")),
+              list("cubeType","xbrl:reportCube"),
+              list("cubeDimensions",list(for $dimension in filter $cube.dimensions 
+                  dict(list("dimensionName",$dimension.concept.name),
+                      if $dimension.dimension-type == "explicit" list("domainName",qname($dimension.default.name.namespace-uri, $dimension.default.name.local-name + "_" + $cube.drs-role.uri.split('\/').last)) else list(),
+                      if $dimension.dimension-type == "explicit" list("allowDomainFacts",true) else list("allowDomainFacts",false)
+                      )
+                  ) + list(dict(list("dimensionName","xbrl:concept"),
+                      list("domainName",qname($cube.cube-concept.name.namespace-uri, $cube.cube-concept.name.local-name + "_" + $cube.drs-role.uri.split('\/').last))
+                      )
+                  ) + list(dict(list("dimensionName","xbrl:period"),
+                      list("allowDomainFacts",true)
+                      )
+                  ) + list(dict(list("dimensionName","xbrl:unit"),
+                      list("allowDomainFacts",true)
+                      )
+                  ) + list(dict(list("dimensionName","xbrl:entity")
+                      )
+                  )
+              ),
+              list("cubeNetworks",list(for $network in filter $NETWORKS_NO_DIMS where ($item.arcrole.uri.contains('parent-child') or $item.arcrole.uri.contains('summation-item')) and $item.role.uri == $cube.drs-role.uri
+                  qname($cube.cube-concept.name.namespace-uri,$network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")
+                  )
+              )
+          )
+        )
+      ),
+      
+      list("domains", $DIMENSION_DOMAINS + $PRIMARY_DOMAINS + $EXTENUM_DOMAINS
+      )
+
+    )
+    )
+)
+
+file-location 'form60.json'
+file-content $rule-value.to-json

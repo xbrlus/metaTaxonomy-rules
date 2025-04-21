@@ -8,16 +8,16 @@
             "dataType": "string"
         },
         {
-            "localName": "Topic",
+            "localName": "Glossary",
             "type": "Reference",
-            "label": "Topic",
+            "label": "Glossary",
             "isAbstract": "false",
             "dataType": "string"
         },
         {
-            "localName": "Glossary",
+            "localName": "Topic",
             "type": "Reference",
-            "label": "Glossary",
+            "label": "Topic",
             "isAbstract": "false",
             "dataType": "string"
         },
