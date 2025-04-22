@@ -7,9 +7,11 @@ constant $CONVERT_TAXONOMY = taxonomy('https://eCollection.ferc.gov/taxonomy/for
 constant $TAXONOMY_NAME = "FERC Form 60 2025-04-01"
 constant $TAXONOMY_PREFIX = "ferc"
 
+constant $EXT_ROLE_NAMESPACE = "http://ferc.gov/form/2025-04-01/ferc"
+
 constant $FAMILY_NAME = "FERC Form 60"
 
-constant $NAMESPACES = filter $CONVERT_TAXONOMY.namespaces where $item not in list("http://www.xbrl.org/2003/linkbase","http://xbrl.org/2008/generic", "http://www.w3.org/1999/xlink", "http://www.xbrl.org/2003/XLink", "http://xbrl.org/2005/xbrldt", "http://www.xbrl.org/dtr/type/2020-01-21")
+constant $NAMESPACES = filter $CONVERT_TAXONOMY.namespaces where $item not in list("http://www.xbrl.org/2003/linkbase","http://xbrl.org/2008/generic", "http://www.w3.org/1999/xlink", "http://www.xbrl.org/2003/XLink", "http://xbrl.org/2005/xbrldt", "http://www.xbrl.org/dtr/type/2020-01-21")  and not $item.contains('sched-') and not $item.contains('roles/')
 
 constant $CUBES = $CONVERT_TAXONOMY.cubes
 
@@ -39,7 +41,7 @@ constant $EXT_ENUMS = filter $CONVERT_TAXONOMY.concepts where $item.attribute(en
 
 constant $EXT_ENUMS_SET = (filter $EXT_ENUMS returns list($item.attribute(enum2:domain).to-qname, $item.attribute(enum2:linkrole))).to-set
 
-constant $TYPES = filter $OLD_CONCEPTS where $item.data-type.name.namespace-uri not in list("http://www.xbrl.org/dtr/type/2022-03-31", "http://www.xbrl.org/dtr/type/non-numeric", "http://www.xbrl.org/dtr/type/numeric", "http://www.xbrl.org/2003/instance", "http://www.w3.org/2001/XMLSchema") returns $item.data-type
+
                             
 constant $REF_NAME_A = dict(for $count in range($OLD_CONCEPTS.count)
                                 $ConceptsList = $OLD_CONCEPTS.to-list
@@ -47,11 +49,12 @@ constant $REF_NAME_A = dict(for $count in range($OLD_CONCEPTS.count)
                                 list($concept,$count)
 )
 
+
 constant $REFERENCES = list(for $concept in $OLD_CONCEPTS
                             for $ref_count in range($concept.all-references.count)
                             $ref_list = $concept.all-references.to-list
                             dict(list("relatedNames",list(if $LOOKUP_CHANGED_DOMAINS[$concept.name] == none $concept.name else $LOOKUP_CHANGED_DOMAINS[$concept.name])),
-                            list("referenceType","xbrl:" + $ref_list[$ref_count].role-uri.split('\/').last),
+                            list("referenceType",qname(if $ref_list[$ref_count].role.uri in $EXT_REF_TYPES $EXT_ROLE_NAMESPACE else "https://xbrl.org/2025" , $ref_list[$ref_count].role.uri.split('\/').last)),
                             list("name", qname($CONVERT_TAXONOMY.entry-point-namespace, "R_" + string($REF_NAME_A[$concept]) + "_" + string($ref_count))),
                             list("properties",list(
                                   for $partItem in  $ref_list[$ref_count].parts
@@ -61,9 +64,56 @@ constant $REFERENCES = list(for $concept in $OLD_CONCEPTS
                                 )
                   )
 
+constant $EXT_TYPES = filter $OLD_CONCEPTS where $item.data-type.name.namespace-uri not in list("http://www.xbrl.org/dtr/type/2022-03-31", "http://www.xbrl.org/dtr/type/non-numeric", "http://www.xbrl.org/dtr/type/numeric", "http://www.xbrl.org/2003/instance", "http://www.w3.org/2001/XMLSchema") returns list($item.data-type, $item.base-type)
+
+
+constant $TYPES = list("dataTypes",list(for $type in $EXT_TYPES
+    dict(
+        list("name", qname($type[1].name.namespace-uri, $type[1].name.local-name)),
+        list("baseType", if $BASE_TYPES[$type[2].name] == none $type[2].name else $BASE_TYPES[$type[2].name]),
+        if $type[1].enumerations.length > 0 list("enumeration", $type[1].enumerations.to-list) else list()
+        )
+    )
+)
+
+constant $EXT_REF_SET_OF_TYPES = sum(filter $OLD_CONCEPTS.all-references returns $item)
+
+constant $EXT_REF_TYPES = filter $EXT_REF_SET_OF_TYPES.role.uri where not $item.contains("http://www.xbrl.org/2003/role") returns $item
+
+constant $REF_TYPES = list("referenceTypes",list(for $type in $EXT_REF_TYPES
+    dict(
+        list("name", qname($EXT_ROLE_NAMESPACE, $type.split('\/').last)),
+        list("uri", $type),
+        )
+    )
+)
+
+constant $EXT_LAB_SET_OF_TYPES = sum(filter $OLD_CONCEPTS.all-labels returns $item)
+
+constant $EXT_LAB_TYPES = filter $EXT_LAB_SET_OF_TYPES.role.uri where not $item.contains("http://www.xbrl.org/2003/role") returns $item
+
+constant $LAB_TYPES = list("labelTypes",list(for $type in $EXT_LAB_TYPES
+    dict(
+        list("name", qname($EXT_ROLE_NAMESPACE, $type.split('\/').last)),
+        list("uri", $type),
+        )
+    )
+)
+
+constant $EXT_RELATIONSHIPS = filter $NETWORKS_NO_LABELS where not $item.arcrole.uri.contains('xbrl.org') returns $item.arcrole.uri
+
+constant $RELATIONSHIP_TYPES = list("relationshipTypes",list(for $relationship in $EXT_RELATIONSHIPS
+    dict(
+        list("name", qname($EXT_ROLE_NAMESPACE, $relationship.split('\/').last)),
+        list("uri", $relationship),
+        list("cycles", 'none')
+        )
+    )
+)
+
 constant $NETWORKS = list("networks",list(for $network in  $NETWORKS_NO_DIMS
           dict(
-              list("name", $network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network"),
+              list("name", qname($CONVERT_TAXONOMY.entry-point-namespace,$network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")),
               list("relationshipTypeName","xbrl:" + $network.arcrole.uri.split('\/').last),
               list("roots",list(for $root in $network.roots $root.name )),
               list("relationships",list(for $relationship in filter $network.relationships 
@@ -72,7 +122,7 @@ constant $NETWORKS = list("networks",list(for $network in  $NETWORKS_NO_DIMS
                       list("target", if $LOOKUP_CHANGED_DOMAINS[$relationship.target.name] == none $relationship.target.name else $LOOKUP_CHANGED_DOMAINS[$relationship.target.name]),
                       list("order",$relationship.order),
                       if $relationship.weight != none list("weight",$relationship.weight) else skip,
-                      if $relationship.preferred-label != none list("preferredLabel",$relationship.preferred-label) else skip,
+                      if $relationship.preferred-label != none list("preferredLabel",qname($relationship.target.name.namespace-uri,$relationship.preferred-label.split('\/').last)) else skip,
                       )
                   )
               ),
@@ -175,6 +225,55 @@ constant $BASE_TYPES = dict(
     list(nonnum:textBlockItemType,"xbrli:textBlock")
 )
 
+constant $BASE_LABELS = dict(
+    list("http://www.xbrl.org/2003/role/commentaryGuidance","xbrl:commentaryGuidance"),
+    list("http://www.xbrl.org/2009/role/commonPracticeRef","xbrl:commonPracticeRef"),
+    list("http://www.xbrl.org/2003/role/definitionGuidance","xbrl:definitionGuidance"),
+    list("http://www.xbrl.org/2009/role/deprecatedDateLabel","xbrl:deprecatedDateLabel"),
+    list("http://www.xbrl.org/2009/role/deprecatedLabel","xbrl:deprecatedLabel"),
+    list("http://www.xbrl.org/2003/role/disclosureGuidance","xbrl:disclosureGuidance"),
+    list("http://www.xbrl.org/2003/role/documentation","xbrl:documentation"),
+    list("http://www.xbrl.org/2003/role/exampleGuidance","xbrl:exampleGuidance"),
+    list("http://www.xbrl.org/2003/role/label","xbrl:label"),
+    list("http://www.xbrl.org/2003/role/measurementGuidance","xbrl:measurementGuidance"),
+    list("http://xbrl.us/us-gaap/role/label/negated","xbrl:negated"),
+    list("http://www.xbrl.org/2009/role/negatedLabel","xbrl:negatedLabel"),
+    list("http://www.xbrl.org/2009/role/negatedNetLabel","xbrl:negatedNetLabel"),
+    list("http://xbrl.us/us-gaap/role/label/negatedPeriodEnd","xbrl:negatedPeriodEnd"),
+    list("http://www.xbrl.org/2009/role/negatedPeriodEndLabel","xbrl:negatedPeriodEndLabel"),
+    list("http://xbrl.us/us-gaap/role/label/negatedPeriodStart","xbrl:negatedPeriodStart"),
+    list("http://www.xbrl.org/2009/role/negatedPeriodStartLabel","xbrl:negatedPeriodStartLabel"),
+    list("http://www.xbrl.org/2009/role/negatedTerseLabel","xbrl:negatedTerseLabel"),
+    list("http://xbrl.us/us-gaap/role/label/negatedTotal","xbrl:negatedTotal"),
+    list("http://www.xbrl.org/2009/role/negatedTotalLabel","xbrl:negatedTotalLabel"),
+    list("http://www.xbrl.org/2009/role/negativeLabel","xbrl:negativeLabel"),
+    list("http://www.xbrl.org/2009/role/negativePeriodEndLabel","xbrl:negativePeriodEndLabel"),
+    list("http://www.xbrl.org/2009/role/negativePeriodEndTotalLabel","xbrl:negativePeriodEndTotalLabel"),
+    list("http://www.xbrl.org/2003/role/negativePeriodStartLabel","xbrl:negativePeriodStartLabel"),
+    list("http://www.xbrl.org/2009/role/negativePeriodStartTotalLabel","xbrl:negativePeriodStartTotalLabel"),
+    list("http://www.xbrl.org/2009/role/negativeTerseLabel","xbrl:negativeTerseLabel"),
+    list("http://www.xbrl.org/2009/role/negativeVerboseLabel","xbrl:negativeVerboseLabel"),
+    list("http://www.xbrl.org/2009/role/netLabel","xbrl:netLabel"),
+    list("http://www.xbrl.org/2003/role/periodEndLabel","xbrl:periodEndLabel"),
+    list("http://www.xbrl.org/2003/role/periodStartLabel","xbrl:periodStartLabel"),
+    list("http://www.xbrl.org/2003/role/presentationGuidance","xbrl:presentationGuidance"),
+    list("http://www.xbrl.org/2003/role/positiveLabel","xbrl:positiveLabel"),
+    list("http://www.xbrl.org/2009/role/positivePeriodEndLabel","xbrl:positivePeriodEndLabel"),
+    list("http://www.xbrl.org/2009/role/positivePeriodEndTotalLabel","xbrl:positivePeriodEndTotalLabel"),
+    list("http://www.xbrl.org/2009/role/positivePeriodStartLabel","xbrl:positivePeriodStartLabel"),
+    list("http://www.xbrl.org/2009/role/positivePeriodStartTotalLabel","xbrl:positivePeriodStartTotalLabel"),
+    list("http://www.xbrl.org/2003/role/positiveTerseLabel","xbrl:positiveTerseLabel"),
+    list("http://www.xbrl.org/2003/role/positiveVerboseLabel","xbrl:positiveVerboseLabel"),
+    list("http://www.xbrl.org/2006/role/restatedLabel","xbrl:restatedLabel"),
+    list("http://www.xbrl.org/2025/role/symbolLabel","xbrl:symbolLabel"),
+    list("http://www.xbrl.org/2003/role/terseLabel","xbrl:terseLabel"),
+    list("http://www.xbrl.org/2003/role/totalLabel","xbrl:totalLabel"),
+    list("http://www.xbrl.org/2003/role/verboseLabel","xbrl:verboseLabel"),
+    list("http://www.xbrl.org/2003/role/zeroLabel","xbrl:zeroLabel"),
+    list("http://www.xbrl.org/2003/role/zeroTerseLabel","xbrl:zeroTerseLabel"),
+    list("http://www.xbrl.org/2003/role/zeroVerboseLabel","xbrl:zeroVerboseLabel")
+    )
+
 
 constant $namespaceDict = dict(
     list("http://fasb.org/us-gaap/2024", "us-gaap"),
@@ -204,11 +303,14 @@ constant $namespaceDict = dict(
     list("https://taxonomies.xbrl.us/standardized-statements", "xuss"),
     list("http://ferc.gov/form/2025-04-01/ferc", "ferc"),
     list("http://www.ferc.gov/form/parts", "ferc-parts"),
-    list("http://ferc.gov/form/2025-04-01/types", "ferc-types")
+    list("http://ferc.gov/form/2025-04-01/types", "ferc-types"),
+    list("http://ferc.gov/form/2025-04-01/ferc-form-60", "ferc-form-60")
 )
 
-output types
-$TYPES
+
+output refs
+
+$EXT_RELATIONSHIPS
 
 output test_taxonomy
 
@@ -300,7 +402,7 @@ dict(
           dict(list("relatedName",$concept.name),
               list("language",$label.lang),
                     list("value",$label.text),
-                    list("labelType","xbrl:" + $label.role.uri.split('\/').last)
+                    list("labelType",if $label.role.uri in $BASE_LABELS.keys $BASE_LABELS[$label.role.uri] else qname($concept.name.namespace-uri, $label.role.uri.split('\/').last))
                   )
           )
       ),
@@ -329,13 +431,15 @@ dict(
                   )
               ),
               list("cubeNetworks",list(for $network in filter $NETWORKS_NO_DIMS where ($item.arcrole.uri.contains('parent-child') or $item.arcrole.uri.contains('summation-item')) and $item.role.uri == $cube.drs-role.uri
-                  qname($cube.cube-concept.name.namespace-uri,$network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")
+                  qname($CONVERT_TAXONOMY.entry-point-namespace,$network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")
                   )
               )
           )
         )
       ),
-      
+      $TYPES,
+      $REF_TYPES,
+      $LAB_TYPES,
       list("domains", $DIMENSION_DOMAINS + $PRIMARY_DOMAINS + $EXTENUM_DOMAINS
       )
 
