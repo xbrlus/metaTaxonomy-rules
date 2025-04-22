@@ -440,6 +440,7 @@ dict(
       $TYPES,
       $REF_TYPES,
       $LAB_TYPES,
+      $RELATIONSHIP_TYPES,
       list("domains", $DIMENSION_DOMAINS + $PRIMARY_DOMAINS + $EXTENUM_DOMAINS
       )
 
