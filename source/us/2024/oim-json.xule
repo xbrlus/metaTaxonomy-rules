@@ -40,14 +40,22 @@ constant $NETWORKS_NO_LABELS = filter  $CONVERT_TAXONOMY.networks where not $ite
 
 constant $NETWORKS_NO_DIMS = filter $NETWORKS_NO_LABELS where not ($item.arcrole.uri.contains('domain-member') or $item.arcrole.uri.contains('dimension-domain') or $item.arcrole.uri.contains('dimension-default') or $item.arcrole.uri.contains('all') or $item.arcrole.uri.contains('hypercube-dimension'))
 
-constant $COLLAPSED_NETWORKS  = ((filter $NETWORKS_NO_LABELS returns list($item.role.uri, $item.role.description)).to-set).to-list.sort("asc")
+constant $COLLAPSED_NETWORKS  = ((filter $NETWORKS_NO_LABELS returns list($item.role.description, $item.role.uri)).to-set).to-list.sort("asc")
 
 constant $EXT_ENUMS = filter $CONVERT_TAXONOMY.concepts where $item.attribute(enum2:linkrole) != none
 
+/** create a dictionary of labels associated with the group object **/
+                              
+constant $GROUP_LABELS = list(for $groupLabel in $COLLAPSED_NETWORKS
+                            dict(list("relatedName",qname($CONVERT_TAXONOMY.entry-point-namespace, $groupLabel.last.split('\/').last + "Group")),
+                                  list("language","en"),
+                                  list("value",$groupLabel.first),
+                                  list("labelType",qname("https://xbrl.org/2025","label"))
+                                  )
+                             )
+
 constant $EXT_ENUMS_SET = (filter $EXT_ENUMS returns list($item.attribute(enum2:domain).to-qname, $item.attribute(enum2:linkrole))).to-set
-
-
-                            
+                       
 constant $REF_NAME_A = dict(for $count in range($OLD_CONCEPTS.count)
                                 $ConceptsList = $OLD_CONCEPTS.to-list
                                 $concept = $ConceptsList[$count]
@@ -273,6 +281,31 @@ constant $PRIM_DOMAIN_LABELS = list(for $cube in $CUBES
                                 )
 
 
+/** Create a dictionary to look up the cubes in a a specific group based on the $CUBE_MAP constant**/
+
+constant $CUBE_URI = list(for $cube-keys in $CUBE_MAP.keys
+                      $uri = $cube-keys[2];
+                      $concept = $cube-keys[1];
+                      list($uri, $CUBE_MAP[list($concept,$uri)])               
+                      )
+
+constant $CUBE_URI_DICT =$CUBE_URI.agg-to-dict(1)
+                          
+
+
+constant $GROUP_CONTENTS_CUBES = list(
+          for $role in $COLLAPSED_NETWORKS
+            dict(
+                list("groupName",qname($CONVERT_TAXONOMY.entry-point-namespace, $role.last.split('\/').last + "Group")),
+                list("relatedNames", list(for $network in filter $NETWORKS_NO_DIMS where ($item.arcrole.uri.contains('parent-child') or $item.arcrole.uri.contains('summation-item')) and $item.role.uri == $role.last
+                                          qname($CONVERT_TAXONOMY.entry-point-namespace, $network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")
+                                          )
+                            )
+                )
+          )
+          
+
+
 constant $BASE_TYPES = dict(
     list(xbrli:decimalItemType, "xs:decimal"),
     list(xbrli:floatItemType,"xs:float"),
@@ -409,7 +442,7 @@ constant $namespaceDict = dict(
 
 output refs
 
-$DIMENSION_DOMAINS_DICT
+$CUBE_URI
 
 output test_taxonomy
 
@@ -459,7 +492,7 @@ dict(
             list("periodType",$concept.period-type),
             if $concept.balance != none
                 list("properties",list(
-                  dict(list("property","xbrl:balance"),
+                  dict(list("property",qname("https://xbrl.org/2025","balance")),
                         list("value",$concept.balance)
                   )
                 )
@@ -479,18 +512,25 @@ dict(
           )
         ),
         list("groups",list(for $role in $COLLAPSED_NETWORKS
-          dict(list("name",qname($CONVERT_TAXONOMY.entry-point-namespace, $role.first.split('\/').last + "Group")),
-              list("groupURI",$role.first)
+          dict(list("name",qname($CONVERT_TAXONOMY.entry-point-namespace, $role.last.split('\/').last + "Group")),
+              list("groupURI",$role.last)
           )
         )
       ),
       list("groupContents",list(
           for $role in $COLLAPSED_NETWORKS
             dict(
-                list("groupName",qname($CONVERT_TAXONOMY.entry-point-namespace, $role.first.split('\/').last + "Group")),
-                list("relatedNames", list(for $network in filter $NETWORKS_NO_DIMS where ($item.arcrole.uri.contains('parent-child') or $item.arcrole.uri.contains('summation-item')) and $item.role.uri == $role.first
+                list("groupName",qname($CONVERT_TAXONOMY.entry-point-namespace, $role.last.split('\/').last + "Group")),
+                list("relatedNames", list(for $network in filter $NETWORKS_NO_DIMS where ($item.arcrole.uri.contains('parent-child') or $item.arcrole.uri.contains('summation-item')) and $item.role.uri == $role.last
                                           qname($CONVERT_TAXONOMY.entry-point-namespace, $network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")
-                                          )
+                                          ) + list(
+                                            $cubeNetwork = $CUBE_URI_DICT[$role.last]
+                                            if $cubeNetwork == none
+                                              skip
+                                            else
+                                              for $cube in $cubeNetwork
+                                                $cube[2][1]
+                            )
                             )
                 )
           )
@@ -512,29 +552,29 @@ dict(
                     list("value",$label.text),
                     list("labelType",if $label.role.uri in $BASE_LABELS.keys $BASE_LABELS[$label.role.uri] else qname($concept.name.namespace-uri, $label.role.uri.split('\/').last))
                   )
-          ) + $CUBE_LABELS + $DIM_DOMAIN_LABELS + $PRIM_DOMAIN_LABELS 
+          ) + $CUBE_LABELS + $DIM_DOMAIN_LABELS + $PRIM_DOMAIN_LABELS + $GROUP_LABELS
       ),
       list("references",$REFERENCES
       ),
       $NETWORKS,
       list("cubes",list(for $cube in $CUBES
           dict(list("name", qname($cube.cube-concept.name.namespace-uri,$cube.cube-concept.name.local-name + "_" + $cube.drs-role.uri.split('\/').last + "_Cube")),
-              list("cubeType","xbrl:reportCube"),
+              list("cubeType",qname("https://xbrl.org/2025","reportCube")),
               list("cubeDimensions",list(for $dimension in filter $cube.dimensions 
                   dict(list("dimensionName",$dimension.concept.name),
                       if $dimension.dimension-type == "explicit" list("domainName",qname($dimension.default.name.namespace-uri, $dimension.default.name.local-name + "_" + $cube.drs-role.uri.split('\/').last + "_DDomain")) else list(),
                       if $dimension.dimension-type == "explicit" list("allowDomainFacts",true) else list("allowDomainFacts",false)
                       )
-                  ) + list(dict(list("dimensionName","xbrl:concept"),
+                  ) + list(dict(list("dimensionName",qname("https://xbrl.org/2025","concept")),
                       list("domainName",qname($cube.cube-concept.name.namespace-uri, $cube.cube-concept.name.local-name + "_" + $cube.drs-role.uri.split('\/').last + "_PDomain"))
                       )
-                  ) + list(dict(list("dimensionName","xbrl:period"),
+                  ) + list(dict(list("dimensionName",qname("https://xbrl.org/2025","period")),
                       list("allowDomainFacts",true)
                       )
-                  ) + list(dict(list("dimensionName","xbrl:unit"),
+                  ) + list(dict(list("dimensionName",qname("https://xbrl.org/2025","unit")),
                       list("allowDomainFacts",true)
                       )
-                  ) + list(dict(list("dimensionName","xbrl:entity")
+                  ) + list(dict(list("dimensionName",qname("https://xbrl.org/2025","entity"))
                       )
                   )
               ),
