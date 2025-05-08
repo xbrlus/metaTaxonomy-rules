@@ -1,6 +1,6 @@
 
 
-/**constant $CONVERT_TAXONOMY = taxonomy('https://taxonomies.xbrl.us/standardized-statements/xusss.xsd')**/
+/**constant $CONVERT_TAXONOMY = taxonomy('https://taxonomies.xbrl.us/standardized-statements/xusss.xsd')
 
 constant $EP_XSD = 'https://eCollection.ferc.gov/taxonomy/form6/2025-04-01/form/form6/form-6_2025-04-01.xsd'
 
@@ -14,9 +14,41 @@ constant $FAMILY_NAME = "FERC Form 6"
 
 constant $EXT_ROLE_NAMESPACE = "http://ferc.gov/form/2025-04-01/ferc"
 
+**/
+/**
+constant $EP_XSD = 'https://xbrl.ifrs.org/taxonomy/2024-03-27/full_ifrs_entry_point_2024-03-27.xsd'
+
+constant $TAXONOMY_NAME = "IFRS 2024-03-27"
+
+constant $TAXONOMY_PREFIX = "ifrs-full"
+
+constant $FAMILY_NAME = "IFRS"
+
+constant $VERSION = "2024" 
+
+constant $EXT_ROLE_NAMESPACE = "https://xbrl.ifrs.org/taxonomy/2024-03-27/ifrs-full"
+
+constant $FILE_LOCATION = "full_ifrs_entry_point_2024-03-27.json"
+**/
+constant $EP_XSD = 'https://xbrl.fasb.org/us-gaap/2025/entire/us-gaap-entryPoint-std-2025.xsd'
+
+constant $TAXONOMY_NAME = "US-GAAP 2025"
+
+constant $TAXONOMY_PREFIX = "us-gaap"
+
+constant $FAMILY_NAME = "US-GAAP"
+
+constant $VERSION = "2025" 
+
+constant $EXT_ROLE_NAMESPACE = "http://fasb.org/us-gaap/2025"
+
+constant $FILE_LOCATION = "us-gaap-entryPoint-std-2025.json"
+
 /** DO NOT CHANGE BELOW HERE**/
 
-constant $NAMESPACES = filter $CONVERT_TAXONOMY.namespaces where $item not in list("http://www.xbrl.org/2003/linkbase","http://xbrl.org/2008/generic", "http://www.w3.org/1999/xlink", "http://www.xbrl.org/2003/XLink", "http://xbrl.org/2005/xbrldt", "http://www.xbrl.org/dtr/type/2020-01-21")  and not $item.contains('sched-') and not $item.contains('roles/')
+constant $CONVERT_TAXONOMY = taxonomy($EP_XSD)
+
+constant $NAMESPACES = filter $CONVERT_TAXONOMY.namespaces where $item not in list("http://www.xbrl.org/2003/linkbase","http://xbrl.org/2008/generic", "http://www.w3.org/1999/xlink", "http://www.xbrl.org/2003/XLink", "http://xbrl.org/2005/xbrldt", "http://www.xbrl.org/dtr/type/2020-01-21", "http://xbrl.org/2008/label", "http://www.xbrl.org/2009/role/net", "http://www.xbrl.org/2009/role/negated","http://www.xbrl.org/2009/role/reference", "http://xbrl.org/2008/reference","http://xbrl.org/2020/extensible-enumerations-2.0")  and not $item.contains('sched-') and not $item.contains('roles/') and not $item.contains('role/ifrs') and not $item.contains('http://fasb.org/dis/') and not $item.contains('http://fasb.org/stm/')
 
 constant $CUBES = $CONVERT_TAXONOMY.cubes
 
@@ -26,6 +58,8 @@ constant $DIMENSIONS_TYPED = filter $CONVERT_TAXONOMY.dimensions-typed
 
 constant $DIMENSIONS = filter $CONVERT_TAXONOMY.dimensions
 
+constant $UNIQUE_DIMENSION_NAMES = (filter $CONVERT_TAXONOMY.dimensions  returns list($item.concept.name, $item.dimension-type, $item.default.name)).to-set
+
 constant $CONCEPT_DOMAIN = list(for $cube in $CUBES (filter $cube.primary-concepts.name where $item.local-name.contains('LineItems') returns $item).to-list.first)
 
 constant $OLD_CONCEPTS = filter $CONVERT_TAXONOMY.concepts where not ($item.substitution.local-name == 'hypercubeItem' or $item.name.local-name == 'hypercubeItem' or $item.name in $DIMENSION_DOMAINS_SET)
@@ -34,9 +68,9 @@ constant $CONCEPTS = filter $CONVERT_TAXONOMY.concepts where  not ($item.substit
 
 constant $ABSTRACTS = filter $CONVERT_TAXONOMY.concepts where $item.is-abstract and not ($item.substitution.local-name == 'dimensionItem' or $item.substitution.local-name == 'hypercubeItem' or $item.name.local-name == 'hypercubeItem' or $item.name.local-name == 'dimensionItem' or $item.data-type.name.local-name == 'domainItemType')
 
-constant $MEMBERS = filter $CONVERT_TAXONOMY.concepts where $item.data-type.name.local-name == 'domainItemType'  and $item.name not in $DIMENSION_DOMAINS_SET
+constant $MEMBERS = filter $CONVERT_TAXONOMY.concepts where $item.data-type.name.local-name == 'domainItemType'  and $item.name not in $DIMENSION_DOMAINS_SET and $item.name not in $EXTENUM_DOMAINS_SET
 
-constant $NETWORKS_NO_LABELS = filter  $CONVERT_TAXONOMY.networks where not $item.role.uri.contains('http://www.xbrl.org/2003/role/link')
+constant $NETWORKS_NO_LABELS = filter  $CONVERT_TAXONOMY.networks where not $item.role.uri.contains('http://www.xbrl.org/2003/role/link') and not $item.role.uri.contains("http://www.xbrl.org/2008/role/link")
 
 constant $NETWORKS_NO_DIMS = filter $NETWORKS_NO_LABELS where not ($item.arcrole.uri.contains('domain-member') or $item.arcrole.uri.contains('dimension-domain') or $item.arcrole.uri.contains('dimension-default') or $item.arcrole.uri.contains('all') or $item.arcrole.uri.contains('hypercube-dimension'))
 
@@ -80,7 +114,7 @@ constant $REFERENCES = list(for $concept in $OLD_CONCEPTS
                                 )
                   )
 
-constant $EXT_TYPES = filter $OLD_CONCEPTS where $item.data-type.name.namespace-uri not in list("http://www.xbrl.org/dtr/type/2022-03-31", "http://www.xbrl.org/dtr/type/non-numeric", "http://www.xbrl.org/dtr/type/numeric", "http://www.xbrl.org/2003/instance", "http://www.w3.org/2001/XMLSchema") returns list($item.data-type, $item.base-type)
+constant $EXT_TYPES = filter $OLD_CONCEPTS where $item.data-type.name.namespace-uri not in list("http://www.xbrl.org/dtr/type/2022-03-31", "http://www.xbrl.org/dtr/type/2024-01-31","http://www.xbrl.org/dtr/type/non-numeric", "http://www.xbrl.org/dtr/type/numeric", "http://www.xbrl.org/2003/instance", "http://www.w3.org/2001/XMLSchema", "http://xbrl.org/2020/extensible-enumerations-2.0","http://www.xbrl.org/2009/arcrole/deprecated" ) returns list($item.data-type, $item.base-type)
 
 
 constant $TYPES = list("dataTypes",list(for $type in $EXT_TYPES
@@ -94,7 +128,7 @@ constant $TYPES = list("dataTypes",list(for $type in $EXT_TYPES
 
 constant $EXT_REF_SET_OF_TYPES = sum(filter $OLD_CONCEPTS.all-references returns $item)
 
-constant $EXT_REF_TYPES = filter $EXT_REF_SET_OF_TYPES.role.uri where not $item.contains("http://www.xbrl.org/2003/role") returns $item
+constant $EXT_REF_TYPES = filter $EXT_REF_SET_OF_TYPES.role.uri where not $item.contains("http://www.xbrl.org/2003/role") and not $item.contains("http://www.xbrl.org/2009/role") returns $item
 
 constant $REF_TYPES = list("referenceTypes",list(for $type in $EXT_REF_TYPES
     dict(
@@ -106,7 +140,7 @@ constant $REF_TYPES = list("referenceTypes",list(for $type in $EXT_REF_TYPES
 
 constant $EXT_LAB_SET_OF_TYPES = sum(filter $OLD_CONCEPTS.all-labels returns $item)
 
-constant $EXT_LAB_TYPES = filter $EXT_LAB_SET_OF_TYPES.role.uri where not $item.contains("http://www.xbrl.org/2003/role") returns $item
+constant $EXT_LAB_TYPES = filter $EXT_LAB_SET_OF_TYPES.role.uri where not $item.contains("http://www.xbrl.org/2003/role") and not $item.contains("http://www.xbrl.org/2009/role") returns $item
 
 constant $LAB_TYPES = list("labelTypes",list(for $type in $EXT_LAB_TYPES
     dict(
@@ -131,22 +165,81 @@ constant $NETWORKS = list("networks",list(for $network in  $NETWORKS_NO_DIMS
           dict(
               list("name", qname($CONVERT_TAXONOMY.entry-point-namespace,$network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")),
               list("relationshipTypeName",qname(if $network.arcrole.uri.contains('xbrl.org') "https://xbrl.org/2025" else $EXT_ROLE_NAMESPACE , $network.arcrole.uri.split('\/').last)),
-              list("roots",list(for $root in $network.roots $root.name )),
+              list("roots",list(for $root in $network.roots
+                                        $rootName = if $root.name not in $LOOKUP_CUBE and $root.name not in $DIMENSION_DOMAINS_SET
+                                                              $root.name 
+                                                    else if $root.name in $LOOKUP_CUBE
+                                                            if $CUBE_MAP[list($root.name,$network.role.uri)] == none 
+                                                              $cubeNetwork = $CUBE_CONCEPT_DICT[$root.name]
+                                                              if $cubeNetwork == none
+                                                                $root.name
+                                                              else
+                                                                $cubeNetwork[1][2][1]
+                                                            else  
+                                                              ($CUBE_MAP[list($root.name,$network.role.uri)][1])
+                                                      else 
+                                                            if $DIMENSION_DOMAINS_DICT[list($root.name,$network.role.uri)] == none 
+                                                                $domainNetwork = $DIMENSION_DOMAINS_CONCEPT_DICT[$root.name]
+                                                                if $domainNetwork == none
+                                                                  $root.name
+                                                                else
+                                                                  $domainNetwork[1][2][1]
+                                                            else 
+                                                              ($DIMENSION_DOMAINS_DICT[list($root.name,$network.role.uri)][1]);
+                                        $rootName
+                                                          
+                                )),
               list("relationships",list(for $relationship in filter $network.relationships 
               /** This replaces the domains and cubes **/
                     $source = if $relationship.source.name not in $LOOKUP_CUBE and $relationship.source.name not in $DIMENSION_DOMAINS_SET
                                       $relationship.source.name 
-                                else if $relationship.source.name in $LOOKUP_CUBE  
-                                          ($CUBE_MAP[list($relationship.source.name,$network.role.uri)][1])
+                                else if $relationship.source.name in $LOOKUP_CUBE
+                                          /** Get the new cube name and put in the source **/
+                                          /** If the cube does not exist then use the original name  to identify the first table and use that in the presentation where the presenatation URI matches no dimension group uri.**/
+                                           if $CUBE_MAP[list($relationship.source.name,$network.role.uri)] == none
+                                              $cubeNetwork = $CUBE_CONCEPT_DICT[$relationship.source.name]
+                                                if $cubeNetwork == none
+                                                  $relationship.source.name
+                                                else
+                                                  $cubeNetwork[1][2][1]
+                                             
+                                          else  
+                                             ($CUBE_MAP[list($relationship.source.name,$network.role.uri)][1])
                                      else 
-                                              ($DIMENSION_DOMAINS_DICT[list($relationship.source.name,$network.role.uri)][1]);
+                                          if $DIMENSION_DOMAINS_DICT[list($relationship.source.name,$network.role.uri)] == none 
+                                             /** THIS LOOKS UP THE CUBE NAME USING THIS NAME AS THE LOOK UP KEY.  THis occurs because the URI may differ between the presentation and definition.   **/
+                                             $domainNetwork = $DIMENSION_DOMAINS_CONCEPT_DICT[$relationship.source.name]
+                                                if $domainNetwork == none
+                                                  $relationship.source.name
+                                                else
+                                                  $domainNetwork[1][2][1]
+                                          else 
+                                            ($DIMENSION_DOMAINS_DICT[list($relationship.source.name,$network.role.uri)][1]);
+                                          
                       
                       $target = if $relationship.target.name not in $LOOKUP_CUBE and $relationship.target.name not in $DIMENSION_DOMAINS_SET
                                       $relationship.target.name 
                                 else if $relationship.target.name in $LOOKUP_CUBE  
-                                          ($CUBE_MAP[list($relationship.target.name,$network.role.uri)][1])
+                                          if $CUBE_MAP[list($relationship.target.name,$network.role.uri)] == none 
+                                             $cubeNetwork = $CUBE_CONCEPT_DICT[$relationship.source.name]
+                                                if $cubeNetwork == none
+                                                  $relationship.source.name
+                                                else
+                                                  $cubeNetwork[1][2][1]
+                                          else  
+                                             ($CUBE_MAP[list($relationship.target.name,$network.role.uri)][1])
                                      else 
-                                           ($DIMENSION_DOMAINS_DICT[list($relationship.target.name,$network.role.uri)][1]);
+                                          if $DIMENSION_DOMAINS_DICT[list($relationship.target.name,$network.role.uri)] == none 
+                                             /** THIS LOOKS UP THE CUBE NAME USING THIS NAME AS THE LOOK UP KEY.  THis occurs because the URI may differ between the presentation and definition.   **/
+                                             $domainNetwork = $DIMENSION_DOMAINS_CONCEPT_DICT[$relationship.target.name]
+                                                if $domainNetwork == none
+                                                  $relationship.target.name
+                                                else
+                                                  $domainNetwork[1][2][1]
+                                          else 
+                                            ($DIMENSION_DOMAINS_DICT[list($relationship.target.name,$network.role.uri)][1]);
+                  
+
                   dict(
                       list("source", $source),                 
                       list("target", $target),
@@ -179,12 +272,25 @@ constant $DIMENSION_DOMAINS_DICT = dict(for $dimension in $DIMENSIONS
                   $default_domain)
               )
       else skip
+        ) + $EXTENUM_DOMAIN_MAP
+
+constant $EXTENUM_DOMAIN_MAP = dict(for $enum in $EXT_ENUMS_SET
+          $new_domain_concept = qname($enum[1].namespace-uri, $enum[1].local-name + "_" + $enum[2].split('\/').last + "_EDomain");
+          list(list($enum[1], $enum[2]),
+              list(
+                  $new_domain_concept, 
+                  $enum[1])
+              )
         )
 
 constant $DIMENSION_DOMAINS_SET = set(for $dimension in $DIMENSIONS
                                           if $dimension.dimension-type == 'explicit'
                                             $dimension.default.name
                                           else skip
+                                            ) + $EXTENUM_DOMAINS_SET
+
+constant $EXTENUM_DOMAINS_SET = set(for $enum in $EXT_ENUMS_SET
+                                            $enum[1]
                                             )
 
 constant $DIMENSION_DOMAINS = list(for $dimension in $DIMENSIONS
@@ -205,6 +311,39 @@ constant $DIMENSION_DOMAINS = list(for $dimension in $DIMENSIONS
       else skip
         )
 
+/** use the domain to identify the base domain for a dimension in a list of lists **/
+
+constant $DIMENSION_DOMAINS_UNIQUE_PREP = set(for $dimension in $DIMENSIONS
+          if $dimension.dimension-type == 'explicit'
+              $default_domain = $dimension.default.name;
+              for $relationship in navigate domain-member descendants from $default_domain role $dimension.cube.drs-role taxonomy $CONVERT_TAXONOMY  returns list (source-name, target-name, order)
+                  list(
+                  $default_domain,
+                  $relationship[1],
+                  $relationship[2],
+                  $relationship[3],)
+                  
+              else skip
+).to-list
+
+constant $BASE_DOMAINS_WITH_DOMAIN = $DIMENSION_DOMAINS_UNIQUE_PREP.agg-to-dict(1)
+
+constant $BASE_DOMAIN = list(for $domain in $BASE_DOMAINS_WITH_DOMAIN.keys
+                              dict(
+                                  list("name", $domain),
+                                  list("relationships",list(for $relationship in $BASE_DOMAINS_WITH_DOMAIN[$domain]
+                                      dict(list("source", $relationship[2]),
+                                          list("target",$relationship[3]),
+                                          list("order",$relationship[4].number)
+                                          )
+                                        ) 
+                                      ) 
+                                  )
+                                )
+     
+
+
+
 constant $PRIMARY_DOMAINS = list(for $cube in $CUBES
       $p_domain_concept = (navigate all parents from $cube.cube-concept.name taxonomy $CONVERT_TAXONOMY  returns target-name).to-list;
       $new_domain_concept = qname($cube.cube-concept.name.namespace-uri,$cube.cube-concept.name.local-name + "_" + $cube.drs-role.uri.split('\/').last + "_PDomain")
@@ -221,11 +360,12 @@ constant $PRIMARY_DOMAINS = list(for $cube in $CUBES
         )
 
 constant $EXTENUM_DOMAINS = list(for $enum in $EXT_ENUMS_SET
+      $new_domain_concept = qname($enum[1].namespace-uri, $enum[1].local-name + "_" + $enum[2].split('\/').last + "_EDomain")
       dict(
-          list("domainName",$enum[1].local-name + "_" + $enum[2].split('\/').last + "_EDomain"),
+          list("domainName",$new_domain_concept),
           list("relationships",list(for $relationship in navigate domain-member descendants from ($enum[1]) role $enum[2] taxonomy $CONVERT_TAXONOMY  returns list (source-name, target-name, order)
-              dict(list("source",$relationship[1]),
-                  list("target",$relationship[2]),
+              dict(list("source",if $relationship[1] == $enum[1] $new_domain_concept else $relationship[1]),
+                  list("target",if $relationship[2] == $enum[1] $new_domain_concept else $relationship[2]),
                   list("order",$relationship[3].number)
                   )
                 ) 
@@ -280,6 +420,17 @@ constant $PRIM_DOMAIN_LABELS = list(for $cube in $CUBES
                                           )  
                                 )
 
+constant $EXTENUM_DOMAIN_LABELS = list(for $enum in $EXT_ENUMS_SET
+                                  $new_domain_concept = qname($enum[1].namespace-uri, $enum[1].local-name + "_" + $enum[2].split('\/').last + "_EDomain")
+                                  $domain_concept = $CONVERT_TAXONOMY.concept($enum[1]);
+                                  for $label in $domain_concept.all-labels
+                                  dict(list("relatedName", $new_domain_concept),
+                                      list("language",$label.lang),
+                                            list("value",$label.text),
+                                            list("labelType",if $label.role.uri in $BASE_LABELS.keys $BASE_LABELS[$label.role.uri] else qname($enum[1].namespace-uri, $label.role.uri.split('\/').last))
+                                          )  
+                                )
+
 
 /** Create a dictionary to look up the cubes in a a specific group based on the $CUBE_MAP constant**/
 
@@ -289,7 +440,23 @@ constant $CUBE_URI = list(for $cube-keys in $CUBE_MAP.keys
                       list($uri, $CUBE_MAP[list($concept,$uri)])               
                       )
 
-constant $CUBE_URI_DICT =$CUBE_URI.agg-to-dict(1)
+constant $CUBE_CONCEPT = list(for $cube-keys in $CUBE_MAP.keys
+                      $uri = $cube-keys[2];
+                      $concept = $cube-keys[1];
+                      list($concept, $CUBE_MAP[list($concept,$uri)])               
+                      )
+
+constant $DIMENSION_DOMAINS_CONCEPT = list(for $domain-keys in $DIMENSION_DOMAINS_DICT.keys
+                      $uri = $domain-keys[2];
+                      $concept = $domain-keys[1];
+                      list($concept, $DIMENSION_DOMAINS_DICT[list($concept,$uri)])               
+                      )
+
+constant $CUBE_URI_DICT = $CUBE_URI.agg-to-dict(1)
+
+constant $CUBE_CONCEPT_DICT = $CUBE_CONCEPT.agg-to-dict(1)
+
+constant $DIMENSION_DOMAINS_CONCEPT_DICT = $DIMENSION_DOMAINS_CONCEPT.agg-to-dict(1)
                           
 
 
@@ -349,10 +516,16 @@ constant $BASE_TYPES = dict(
     list(num:perShareItemType,"xbrli:perShare"),
     list(num:percentItemType,"xbrli:percent"),
     list(nonnum:textBlockItemType,"xbrli:textBlock"),
+    list(dtr-types:textBlockItemType,"xbrli:textBlock"),
+    list(dtr-types:perShareItemType,"xbrli:perShare"),
+    list(dtr-types:percentItemType,"xbrli:percent"),
     list(num:volumeItemType,"xbrli:volume"),
     list(num:lengthItemType,"xbrli:length"),
     list(num:weightItemType,"xbrli:weight"),
     list(num:energyItemType,"xbrli:energy"),
+    list(num:areaItemType,"xbrli:area"),
+    list(enum2:enumerationItemType,"xbrli:enumeration"),
+    list(enum2:enumerationSetItemType,"xbrli:enumerationSet"),
 
 )
 
@@ -437,12 +610,110 @@ constant $namespaceDict = dict(
     list("http://ferc.gov/form/2025-04-01/types", "ferc-types"),
     list("http://ferc.gov/form/2025-04-01/ferc-form-60", "ferc-form-60"),
     list("http://ferc.gov/form/2025-04-01/ferc-form-6", "ferc-form-6"),
+    list("https://xbrl.ifrs.org/taxonomy/2024-03-27/ifrs-full", "ifrs-full"),
+    list("https://xbrl.ifrs.org/taxonomy/2024-03-27/ifrs/full_ifrs_entry_point", "ifrs_entry_point"),
+    list("http://www.xbrl.org/2025/ref", "ref"),
+    list("http://xbrl.sec.gov/country/2025", "country"),
+    list("http://fasb.org/srt-std/2025", "srt-std"),
+    list("http://fasb.org/us-gaap-entryPoint-std/2025", "us-gaap-entryPoint-std"),
+    list("http://fasb.org/us-types/2025", "us-types"),
+    list("http://fasb.org/us-gaap/2025", "us-gaap"),
+    list("http://xbrl.sec.gov/stpr/2025", "stpr"),
+    list("http://fasb.org/srt-types/2025", "srt-types"),
+    list("http://fasb.org/srt/2025", "srt"),
+    list("http://fasb.org/us-gaap-std/2025", "us-gaap-std"),
+    list("http://fasb.org/srt-ent-std/2025", "srt-ent-std"),
+    list("http://xbrl.sec.gov/currency/2025", "currency"),
+    list("http://xbrl.sec.gov/dei/2025", "dei")
+   
+    
 )
 
 
+output rel_types
+
+$RELATIONSHIP_TYPES
+
+output domainRoots
+
+$DIMENSION_DOMAINS_SET
+
+output cubes
+
+list("cubes",list(for $cube in $CUBES
+          dict(list("name", qname($cube.cube-concept.name.namespace-uri,$cube.cube-concept.name.local-name + "_" + $cube.drs-role.uri.split('\/').last + "_Cube")),
+              list("cubeType",qname("https://xbrl.org/2025","reportCube")),
+              list("cubeDimensions",list(for $dimension in filter $cube.dimensions 
+                  dict(list("dimensionName",$dimension.concept.name),
+                      if $dimension.dimension-type == "explicit" list("domainName",qname($dimension.default.name.namespace-uri, $dimension.default.name.local-name + "_" + $cube.drs-role.uri.split('\/').last + "_DDomain")) else list(),
+                      if $dimension.dimension-type == "explicit" list("allowDomainFacts",true) else list("allowDomainFacts",false)
+                      )
+                  ) + list(dict(list("dimensionName",qname("https://xbrl.org/2025","concept")),
+                      list("domainName",qname($cube.cube-concept.name.namespace-uri, $cube.cube-concept.name.local-name + "_" + $cube.drs-role.uri.split('\/').last + "_PDomain"))
+                      )
+                  ) + list(dict(list("dimensionName",qname("https://xbrl.org/2025","period")),
+                      list("allowDomainFacts",true)
+                      )
+                  ) + list(dict(list("dimensionName",qname("https://xbrl.org/2025","unit")),
+                      list("allowDomainFacts",true)
+                      )
+                  ) + list(dict(list("dimensionName",qname("https://xbrl.org/2025","entity"))
+                      )
+                  )
+              ),
+              list("cubeNetworks",list(for $network in filter $NETWORKS_NO_DIMS where ($item.arcrole.uri.contains('parent-child') or $item.arcrole.uri.contains('summation-item')) and $item.role.uri == $cube.drs-role.uri
+                  qname($CONVERT_TAXONOMY.entry-point-namespace,$network.role.uri.split('\/').last + "_" + $network.arcrole.uri.split('\/').last + "_Network")
+                  )
+              )
+          )
+        )
+      )
+
+
+output test
+
+list(for $enum in $EXT_ENUMS_SET
+              
+                 $enum[1].clark
+                 
+                                )
+output test2
+
+$EXT_ENUMS.clark
+
 output refs
 
-$CUBE_URI
+$REFERENCES
+
+output labels
+
+$CUBE_LABELS + $DIM_DOMAIN_LABELS + $PRIM_DOMAIN_LABELS + $GROUP_LABELS + $EXTENUM_DOMAIN_LABELS
+
+output cube_labels
+
+$CUBE_LABELS
+
+output dim_domain_labels
+
+$DIM_DOMAIN_LABELS
+
+output prim_domain_labels
+
+$PRIM_DOMAIN_LABELS
+
+output group_labels
+
+$GROUP_LABELS
+
+output extenum_domain_labels
+
+$EXTENUM_DOMAIN_LABELS
+
+
+
+output domains 
+
+$DIMENSION_DOMAINS + $PRIMARY_DOMAINS + $EXTENUM_DOMAINS
 
 output test_taxonomy
 
@@ -450,7 +721,7 @@ dict(
     list("documentInfo",dict(
       list("documentType","https://xbrl.org/PWD/2025-01-31/oim"),
       list("namespaces",list(for $namespace in $NAMESPACES
-        if $namespace not in list("http://www.xbrl.org/dtr/type/numeric", "http://www.xbrl.org/dtr/type/non-numeric","http://www.xbrl.org/2003/instance")
+        if $namespace not in list("http://www.xbrl.org/dtr/type/numeric", "http://www.xbrl.org/dtr/type/non-numeric","http://www.xbrl.org/2003/instance", "http://www.xbrl.org/2006/ref", "http://www.xbrl.org/dtr/type/2022-03-31", "https://xbrl.org/2023/calculation-1.1", "http://www.xbrl.org/2009/arcrole/deprecated", "http://www.xbrl.org/dtr/type/2024-01-31")
           dict(list("prefix",$namespaceDict[$namespace]),
               list("uri",$namespace)
               )
@@ -463,7 +734,12 @@ dict(
         )
         + list(
           dict(list("prefix","xbrli"), 
-              list("uri","http://www.xbrl.org/2025/instance")
+              list("uri","https://xbrl.org/2025/instance")
+              )
+        )
+        + list(
+          dict(list("prefix","ref"), 
+              list("uri","https://xbrl.org/2025/ref")
               )
         )
       )
@@ -472,10 +748,21 @@ dict(
     list("taxonomy",dict(
       list("name",$TAXONOMY_NAME),
       list("frameworkName",$FAMILY_NAME),
-      list("canonicalForm",'true'),
+      list("entryPoint",$EP_XSD),
+      list("version",$VERSION),
+      list("resolved",'true'),
       list("abstracts",list(for $abstract in  $ABSTRACTS
         dict(
-            list("name",$abstract.name)
+            list("name",$abstract.name),
+            if $abstract.data-type.name.local-name != "stringItemType"
+                list("properties",list(
+                  dict(list("property",qname("https://xbrl.org/2025","abstractDataType")),
+                        list("value",$abstract.data-type.name)
+                  )
+                )
+                )
+            else 
+            list()
         )
       )
       ),
@@ -501,12 +788,7 @@ dict(
                 list(),
             list("dataType",if $BASE_TYPES[$concept.data-type.name] == none $concept.data-type.name else $BASE_TYPES[$concept.data-type.name]),
             if $concept.attribute(enum2:linkrole) != none
-              list("enumerationValues",
-                dict(
-                    list("headUsable",$concept.attribute(enum2:headUsable)),
-                    list("domainName",$concept.attribute(enum2:domain).to-qname.local-name + "_Object")
-                    )
-            )
+              list("enumerationDomain",qname($concept.attribute(enum2:domain).to-qname.namespace-uri, $concept.attribute(enum2:domain).to-qname.local-name + "_" + $concept.attribute(enum2:linkrole).split('\/').last + "_EDomain"))
             else list()
             )
           )
@@ -536,12 +818,12 @@ dict(
           )
             
       ),
-      list("dimensions",list(for $dimension in $DIMENSIONS
-        dict(list("name",$dimension.concept.name),
-            if $dimension.dimension-type == 'typed'
+      list("dimensions",list(for $dimension in $UNIQUE_DIMENSION_NAMES
+        dict(list("name",$dimension[1]),
+            if $dimension[2] == 'typed'
                 list("domainDataType","xs:token")  // TODO Need a function to return the type of a typed dimension
             else
-                list(),
+                list("domainRoot",$dimension[3])
         )
       )
       ),
@@ -552,7 +834,7 @@ dict(
                     list("value",$label.text),
                     list("labelType",if $label.role.uri in $BASE_LABELS.keys $BASE_LABELS[$label.role.uri] else qname($concept.name.namespace-uri, $label.role.uri.split('\/').last))
                   )
-          ) + $CUBE_LABELS + $DIM_DOMAIN_LABELS + $PRIM_DOMAIN_LABELS + $GROUP_LABELS
+          ) + $CUBE_LABELS + $DIM_DOMAIN_LABELS + $PRIM_DOMAIN_LABELS + $GROUP_LABELS + $EXTENUM_DOMAIN_LABELS
       ),
       list("references",$REFERENCES
       ),
@@ -590,11 +872,15 @@ dict(
       $LAB_TYPES,
       $RELATIONSHIP_TYPES,
       list("domains", $DIMENSION_DOMAINS + $PRIMARY_DOMAINS + $EXTENUM_DOMAINS
-      )
+      ),
+      list("domainRoots", list(for $domainRoot in $DIMENSION_DOMAINS_SET
+              dict(list("name",$domainRoot)
+        )
+      ))
 
     )
     )
 )
 
-file-location 'form60.json'
+file-location $FILE_LOCATION
 file-content $rule-value.to-json

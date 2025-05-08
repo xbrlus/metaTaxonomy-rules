@@ -13,9 +13,9 @@ output-attribute file-append
 
 /** CONSTANTS **/ 
 
-/**constant $META-2025 = taxonomy('https://xbrl.fasb.org/meta/dev/us-gaap-metaModel-entire-2025.xsd')**/
+constant $META-2025 = taxonomy('https://xbrl.fasb.org/meta/dev/us-gaap-metaModel-entire-2025.xsd')
 
-constant $META-2025 = taxonomy('/Users/campbellpryde/Documents/GitHub/us-gaap-meta-model/WorkingTaxonomy/us-gaap-metaModel-entire-2025.xsd')
+/**constant $META-2025 = taxonomy('/Users/campbellpryde/Documents/GitHub/us-gaap-meta-model/WorkingTaxonomy/us-gaap-metaModel-entire-2025.xsd')**/
 
 constant $RETAINED_EARNINGS_OUT = navigate 'http://www.xbrl.org/2021/arcrole/instant-outflow' children from RetainedEarningsAccumulatedDeficit taxonomy $META-2025 returns set(target)
 
@@ -296,7 +296,7 @@ file-location 'traits.xlsx'
 file-content $rule-value.to-spreadsheet
 
 output multi-trait-2
-$META-2025.concept(ForeignCurrencyFairValueHedgeAssetAtFairValue).traits
+$META-2025.concept(Cash).traits
 
 /**OTHER WITH NO CALCULATION PARENT **/
 output Agg_other_diff_calc_parent

@@ -8,13 +8,6 @@
             "dataType": "string"
         },
         {
-            "localName": "Glossary",
-            "type": "Reference",
-            "label": "Glossary",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
             "localName": "Topic",
             "type": "Reference",
             "label": "Topic",
@@ -27,6 +20,13 @@
             "label": "URI",
             "isAbstract": "false",
             "dataType": "anyURI"
+        },
+        {
+            "localName": "Glossary",
+            "type": "Reference",
+            "label": "Glossary",
+            "isAbstract": "false",
+            "dataType": "string"
         }
     ]
 }

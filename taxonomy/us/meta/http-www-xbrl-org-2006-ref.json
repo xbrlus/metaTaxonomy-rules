@@ -1,72 +1,9 @@
 {
     "http://www.xbrl.org/2006/ref": [
         {
-            "localName": "Publisher",
+            "localName": "Subparagraph",
             "type": "Reference",
-            "label": "Publisher",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "Number",
-            "type": "Reference",
-            "label": "Number",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "Subsection",
-            "type": "Reference",
-            "label": "Subsection",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "URIDate",
-            "type": "Reference",
-            "label": "URIDate",
-            "isAbstract": "false",
-            "dataType": "ref:URIDate@anonymousType"
-        },
-        {
-            "localName": "Subclause",
-            "type": "Reference",
-            "label": "Subclause",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "URI",
-            "type": "Reference",
-            "label": "URI",
-            "isAbstract": "false",
-            "dataType": "anyURI"
-        },
-        {
-            "localName": "Article",
-            "type": "Reference",
-            "label": "Article",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "Name",
-            "type": "Reference",
-            "label": "Name",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "Exhibit",
-            "type": "Reference",
-            "label": "Exhibit",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "Paragraph",
-            "type": "Reference",
-            "label": "Paragraph",
+            "label": "Subparagraph",
             "isAbstract": "false",
             "dataType": "string"
         },
@@ -78,23 +15,16 @@
             "dataType": "string"
         },
         {
+            "localName": "Article",
+            "type": "Reference",
+            "label": "Article",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
             "localName": "Chapter",
             "type": "Reference",
             "label": "Chapter",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "Appendix",
-            "type": "Reference",
-            "label": "Appendix",
-            "isAbstract": "false",
-            "dataType": "string"
-        },
-        {
-            "localName": "Note",
-            "type": "Reference",
-            "label": "Note",
             "isAbstract": "false",
             "dataType": "string"
         },
@@ -106,16 +36,23 @@
             "dataType": "string"
         },
         {
-            "localName": "Subparagraph",
+            "localName": "Paragraph",
             "type": "Reference",
-            "label": "Subparagraph",
+            "label": "Paragraph",
             "isAbstract": "false",
             "dataType": "string"
         },
         {
-            "localName": "Example",
+            "localName": "Note",
             "type": "Reference",
-            "label": "Example",
+            "label": "Note",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
+            "localName": "Subsection",
+            "type": "Reference",
+            "label": "Subsection",
             "isAbstract": "false",
             "dataType": "string"
         },
@@ -127,9 +64,37 @@
             "dataType": "string"
         },
         {
-            "localName": "Page",
+            "localName": "Number",
             "type": "Reference",
-            "label": "Page",
+            "label": "Number",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
+            "localName": "URIDate",
+            "type": "Reference",
+            "label": "URIDate",
+            "isAbstract": "false",
+            "dataType": "ref:URIDate@anonymousType"
+        },
+        {
+            "localName": "URI",
+            "type": "Reference",
+            "label": "URI",
+            "isAbstract": "false",
+            "dataType": "anyURI"
+        },
+        {
+            "localName": "Publisher",
+            "type": "Reference",
+            "label": "Publisher",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
+            "localName": "Appendix",
+            "type": "Reference",
+            "label": "Appendix",
             "isAbstract": "false",
             "dataType": "string"
         },
@@ -141,9 +106,44 @@
             "dataType": "string"
         },
         {
+            "localName": "Example",
+            "type": "Reference",
+            "label": "Example",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
+            "localName": "Page",
+            "type": "Reference",
+            "label": "Page",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
             "localName": "IssueDate",
             "type": "Reference",
             "label": "IssueDate",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
+            "localName": "Exhibit",
+            "type": "Reference",
+            "label": "Exhibit",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
+            "localName": "Subclause",
+            "type": "Reference",
+            "label": "Subclause",
+            "isAbstract": "false",
+            "dataType": "string"
+        },
+        {
+            "localName": "Name",
+            "type": "Reference",
+            "label": "Name",
             "isAbstract": "false",
             "dataType": "string"
         }
